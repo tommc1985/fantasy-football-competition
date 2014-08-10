@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * This is an extension of CActiveRecord used for operations that affect all DB Records
+ */
+
+class ActiveRecord extends CActiveRecord{
+
+    public $statusName,
+        $createdFriendly,
+        $modifiedFriendly;
+
+    /**
+     * Executes after a record has been retrieved from the DB
+     */
+    public function afterFind()
+    {
+        parent::afterFind();
+    }
+
+    /**
+     * Defines default scope of records
+     */
+    public function defaultScope()
+    {
+        return array(
+            'alias' => $this->tableName(),
+            'condition'=>$this->tableName().".deleted=0",
+        );
+    }
+
+    /**
+     * Executes before a record is to be deleted
+     * Overrides hard-delete with soft-delete
+     */
+    public function beforeDelete(){
+        $this->deleted = 1;
+        $this->save();
+        return false;
+    }
+
+    /**
+     * Executes before a record is saved
+     * @return boolean continue status from parent method
+     */
+    public function beforeSave(){
+
+        if($this->isNewRecord){
+            if(array_key_exists('date_created',$this->attributes))
+                $this->created = date('Y-m-d H:i:s');
+        }
+
+        if(array_key_exists('date_date_modified',$this->attributes))
+            $this->date_modified = date('Y-m-d H:i:s');
+
+        return parent::beforeSave();
+    }
+
+}
