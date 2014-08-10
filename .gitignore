@@ -1,6 +1,7 @@
-assets/*
-!assets/.gitignore
-protected/runtime/*
-!protected/runtime/.gitignore
-protected/data/*.db
-themes/classic/views/
+site/assets/*
+!site/assets/.gitignore
+site/protected/runtime/*
+!site/protected/runtime/.gitignore
+site/protected/data/*.db
+site/themes/classic/views/
+site/protected/config/local.php
