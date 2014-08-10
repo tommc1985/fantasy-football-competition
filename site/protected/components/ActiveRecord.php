@@ -4,11 +4,8 @@
  * This is an extension of CActiveRecord used for operations that affect all DB Records
  */
 
-class ActiveRecord extends CActiveRecord{
-
-    public $statusName,
-        $createdFriendly,
-        $modifiedFriendly;
+class ActiveRecord extends CActiveRecord
+{
 
     /**
      * Executes after a record has been retrieved from the DB
@@ -33,7 +30,8 @@ class ActiveRecord extends CActiveRecord{
      * Executes before a record is to be deleted
      * Overrides hard-delete with soft-delete
      */
-    public function beforeDelete(){
+    public function beforeDelete()
+    {
         $this->deleted = 1;
         $this->save();
         return false;
@@ -43,15 +41,18 @@ class ActiveRecord extends CActiveRecord{
      * Executes before a record is saved
      * @return boolean continue status from parent method
      */
-    public function beforeSave(){
+    public function beforeSave()
+    {
 
         if($this->isNewRecord){
-            if(array_key_exists('date_created',$this->attributes))
+            if(array_key_exists('date_created',$this->attributes)) {
                 $this->created = date('Y-m-d H:i:s');
+            }
         }
 
-        if(array_key_exists('date_date_modified',$this->attributes))
+        if(array_key_exists('date_date_modified',$this->attributes)) {
             $this->date_modified = date('Y-m-d H:i:s');
+        }
 
         return parent::beforeSave();
     }
