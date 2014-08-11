@@ -5,10 +5,11 @@
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
+Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 
 return CMap::mergeArray(array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
+	'name'=>'Fantasy Football Competition',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -26,6 +27,9 @@ return CMap::mergeArray(array(
 			'password'=>'password',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
+            'generatorPaths'=>array(
+                'bootstrap.gii',
+            ),
 		),
 	),
 
@@ -35,6 +39,9 @@ return CMap::mergeArray(array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+        'bootstrap'=>array(
+            'class'=>'bootstrap.components.Bootstrap',
+        ),
 		// uncomment the following to enable URLs in path-format
 		/*
 		'urlManager'=>array(
@@ -73,6 +80,7 @@ return CMap::mergeArray(array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
 	),
+	'theme'=>'bootstrap', // requires you to copy the theme under your themes directory
 ),include_configs(array('local', 'shared')));
 
 function include_configs($configs){
