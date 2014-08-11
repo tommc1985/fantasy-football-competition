@@ -36,12 +36,12 @@ class ClubRegistration extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('club_id, competition_id, identifier, date_added, date_modified', 'required'),
-			array('club_id, competition_id, deleted', 'numerical', 'integerOnly'=>true),
+			array('club_id, competition_id, identifier', 'required'),
+			array('club_id, competition_id', 'numerical', 'integerOnly'=>true),
 			array('identifier', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, club_id, competition_id, identifier, date_added, date_modified, deleted', 'safe', 'on'=>'search'),
+			array('id, club_id, competition_id, identifier, date_added, date_modified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -55,8 +55,8 @@ class ClubRegistration extends ActiveRecord
 		return array(
 			'competition' => array(self::BELONGS_TO, 'Competition', 'competition_id'),
 			'club' => array(self::BELONGS_TO, 'Club', 'club_id'),
-			'ties' => array(self::HAS_MANY, 'Tie', 'away_club_id'),
-			'ties1' => array(self::HAS_MANY, 'Tie', 'home_club_id'),
+			'awayTies' => array(self::HAS_MANY, 'Tie', 'away_club_id'),
+			'homeTies' => array(self::HAS_MANY, 'Tie', 'home_club_id'),
 		);
 	}
 
@@ -100,7 +100,6 @@ class ClubRegistration extends ActiveRecord
 		$criteria->compare('identifier',$this->identifier,true);
 		$criteria->compare('date_added',$this->date_added,true);
 		$criteria->compare('date_modified',$this->date_modified,true);
-		$criteria->compare('deleted',$this->deleted);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

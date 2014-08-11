@@ -32,12 +32,12 @@ class Club extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, manager, date_added, date_modified', 'required'),
-			array('deleted', 'numerical', 'integerOnly'=>true),
+			array('name, manager', 'required'),
+			array('', 'numerical', 'integerOnly'=>true),
 			array('name, manager', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, manager, date_added, date_modified, deleted', 'safe', 'on'=>'search'),
+			array('id, name, manager, date_added, date_modified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -91,7 +91,6 @@ class Club extends ActiveRecord
 		$criteria->compare('manager',$this->manager,true);
 		$criteria->compare('date_added',$this->date_added,true);
 		$criteria->compare('date_modified',$this->date_modified,true);
-		$criteria->compare('deleted',$this->deleted);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -50,14 +50,14 @@ class Tie extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('round_id, start_datetime, finish_datetime, date_modified, date_added', 'required'),
-			array('round_id, home_tie_id, away_tie_id, home_club_id, away_club_id, home_club_points, away_club_points, home_club_tie_breaker, away_club_tie_breaker, deleted', 'numerical', 'integerOnly'=>true),
+			array('round_id, start_datetime, finish_datetime', 'required'),
+			array('round_id, home_tie_id, away_tie_id, home_club_id, away_club_id, home_club_points, away_club_points, home_club_tie_breaker, away_club_tie_breaker', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>255),
 			array('type', 'length', 'max'=>5),
 			array('status', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, round_id, home_tie_id, away_tie_id, home_club_id, away_club_id, name, home_club_points, away_club_points, home_club_tie_breaker, away_club_tie_breaker, start_datetime, finish_datetime, type, status, date_modified, date_added, deleted', 'safe', 'on'=>'search'),
+			array('id, round_id, home_tie_id, away_tie_id, home_club_id, away_club_id, name, home_club_points, away_club_points, home_club_tie_breaker, away_club_tie_breaker, start_datetime, finish_datetime, type, status, date_modified, date_added', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,10 +71,10 @@ class Tie extends ActiveRecord
 		return array(
 			'awayClub' => array(self::BELONGS_TO, 'ClubRegistration', 'away_club_id'),
 			'awayTie' => array(self::BELONGS_TO, 'Tie', 'away_tie_id'),
-			'ties' => array(self::HAS_MANY, 'Tie', 'away_tie_id'),
+			'awayTies' => array(self::HAS_MANY, 'Tie', 'away_tie_id'),
 			'homeClub' => array(self::BELONGS_TO, 'ClubRegistration', 'home_club_id'),
 			'homeTie' => array(self::BELONGS_TO, 'Tie', 'home_tie_id'),
-			'ties1' => array(self::HAS_MANY, 'Tie', 'home_tie_id'),
+			'homeTies' => array(self::HAS_MANY, 'Tie', 'home_tie_id'),
 			'round' => array(self::BELONGS_TO, 'Round', 'round_id'),
 		);
 	}
@@ -141,7 +141,6 @@ class Tie extends ActiveRecord
 		$criteria->compare('status',$this->status,true);
 		$criteria->compare('date_modified',$this->date_modified,true);
 		$criteria->compare('date_added',$this->date_added,true);
-		$criteria->compare('deleted',$this->deleted);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -34,13 +34,13 @@ class SourceData extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('competition_source_id, url, date_added, date_modified', 'required'),
-			array('competition_source_id, success, deleted', 'numerical', 'integerOnly'=>true),
+			array('competition_source_id, url', 'required'),
+			array('competition_source_id, success', 'numerical', 'integerOnly'=>true),
 			array('url', 'length', 'max'=>255),
 			array('data', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, competition_source_id, url, data, success, date_added, date_modified, deleted', 'safe', 'on'=>'search'),
+			array('id, competition_source_id, url, data, success, date_added, date_modified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -98,7 +98,6 @@ class SourceData extends ActiveRecord
 		$criteria->compare('success',$this->success);
 		$criteria->compare('date_added',$this->date_added,true);
 		$criteria->compare('date_modified',$this->date_modified,true);
-		$criteria->compare('deleted',$this->deleted);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

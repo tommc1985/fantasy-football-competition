@@ -42,13 +42,13 @@ class Round extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('competition_id, name, start_datetime, finish_datetime, tie_breaker, order, date_added, date_modified', 'required'),
-			array('parent_id, competition_id, legs, replay, order, deleted', 'numerical', 'integerOnly'=>true),
+			array('competition_id, name, start_datetime, finish_datetime, tie_breaker, order', 'required'),
+			array('parent_id, competition_id, legs, replay, order', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>255),
 			array('tie_breaker', 'length', 'max'=>5),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, parent_id, competition_id, name, start_datetime, finish_datetime, legs, replay, tie_breaker, order, date_added, date_modified, deleted', 'safe', 'on'=>'search'),
+			array('id, parent_id, competition_id, name, start_datetime, finish_datetime, legs, replay, tie_breaker, order, date_added, date_modified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -119,7 +119,6 @@ class Round extends ActiveRecord
 		$criteria->compare('order',$this->order);
 		$criteria->compare('date_added',$this->date_added,true);
 		$criteria->compare('date_modified',$this->date_modified,true);
-		$criteria->compare('deleted',$this->deleted);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -34,12 +34,12 @@ class CompetitionSource extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('competition_id, url, date_added, date_modified', 'required'),
-			array('competition_id, order, deleted', 'numerical', 'integerOnly'=>true),
+			array('competition_id, url', 'required'),
+			array('competition_id, order', 'numerical', 'integerOnly'=>true),
 			array('url', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, competition_id, url, order, date_added, date_modified, deleted', 'safe', 'on'=>'search'),
+			array('id, competition_id, url, order, date_added, date_modified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -96,7 +96,6 @@ class CompetitionSource extends ActiveRecord
 		$criteria->compare('order',$this->order);
 		$criteria->compare('date_added',$this->date_added,true);
 		$criteria->compare('date_modified',$this->date_modified,true);
-		$criteria->compare('deleted',$this->deleted);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
