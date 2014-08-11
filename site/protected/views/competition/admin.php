@@ -51,7 +51,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		/*
 		'date_added',
 		'date_modified',
-		'deleted',
 		*/
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
