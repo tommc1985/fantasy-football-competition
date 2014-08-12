@@ -13,7 +13,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Competition #<?php echo $model->id; ?></h1>
+<h1>View Competition</h1>
 
 <?php $this->widget('bootstrap.widgets.TbDetailView',array(
 	'data'=>$model,

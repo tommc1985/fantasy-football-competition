@@ -5,11 +5,11 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('competition_id')); ?>:</b>
-	<?php echo CHtml::encode($data->competition_id); ?>
+	<?php echo CHtml::encode($data->competition->name); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('club_id')); ?>:</b>
-	<?php echo CHtml::encode($data->club_id); ?>
+	<?php echo CHtml::encode($data->club->name); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('identifier')); ?>:</b>

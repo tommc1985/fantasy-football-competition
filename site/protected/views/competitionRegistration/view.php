@@ -19,8 +19,8 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'competition_id',
-		'club_id',
+		'competition.name',
+		'club.name',
 		'identifier',
 		'date_created',
 		'date_modified',

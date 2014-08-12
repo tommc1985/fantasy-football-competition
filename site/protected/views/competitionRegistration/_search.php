@@ -5,9 +5,9 @@
 
 	<?php echo $form->textFieldRow($model,'id',array('class'=>'span5')); ?>
 
-	<?php echo $form->textFieldRow($model,'competition_id',array('class'=>'span5')); ?>
+	<?php echo $form->dropDownListRow($model,'competition_id', CHtml::listData(Competition::model()->findAll(), 'id', 'name'),array('class'=>'span8','empty'=>'--- Select ---')); ?>
 
-	<?php echo $form->textFieldRow($model,'club_id',array('class'=>'span5')); ?>
+	<?php echo $form->dropDownListRow($model,'club_id', CHtml::listData(Club::model()->findAll(), 'id', 'name'),array('class'=>'span8','empty'=>'--- Select ---')); ?>
 
 	<?php echo $form->textFieldRow($model,'identifier',array('class'=>'span5','maxlength'=>255)); ?>
 
