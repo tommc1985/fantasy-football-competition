@@ -12,7 +12,7 @@
  * @property integer $deleted
  *
  * The followings are the available model relations:
- * @property ClubRegistration[] $clubRegistrations
+ * @property CompetitionRegistration[] $competitionRegistrations
  */
 class Club extends ActiveRecord
 {
@@ -49,7 +49,7 @@ class Club extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'clubRegistrations' => array(self::HAS_MANY, 'ClubRegistration', 'club_id'),
+			'competitionRegistrations' => array(self::HAS_MANY, 'CompetitionRegistration', 'club_id'),
 		);
 	}
 

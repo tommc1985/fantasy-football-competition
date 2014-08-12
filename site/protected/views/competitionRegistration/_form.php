@@ -1,5 +1,5 @@
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
-	'id'=>'competition-source-form',
+	'id'=>'competition-registration-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
@@ -9,9 +9,9 @@
 
 	<?php echo $form->dropDownListRow($model,'competition_id', CHtml::listData(Competition::model()->findAll(), 'id', 'name'),array('class'=>'span8','empty'=>'--- Select ---')); ?>
 
-	<?php echo $form->textFieldRow($model,'url',array('class'=>'span8','maxlength'=>255)); ?>
+	<?php echo $form->dropDownListRow($model,'club_id', CHtml::listData(Club::model()->findAll(), 'id', 'name'),array('class'=>'span8','empty'=>'--- Select ---')); ?>
 
-	<?php echo $form->textFieldRow($model,'order',array('class'=>'span1')); ?>
+	<?php echo $form->textFieldRow($model,'identifier',array('class'=>'span5','maxlength'=>255)); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

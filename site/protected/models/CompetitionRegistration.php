@@ -1,32 +1,31 @@
 <?php
 
 /**
- * This is the model class for table "competition".
+ * This is the model class for table "competition_registration".
  *
- * The followings are the available columns in table 'competition':
+ * The followings are the available columns in table 'competition_registration':
  * @property integer $id
- * @property string $name
- * @property string $slug
- * @property string $type
- * @property string $source
- * @property string $status
+ * @property integer $club_id
+ * @property integer $competition_id
+ * @property string $identifier
  * @property string $date_created
  * @property string $date_modified
  * @property integer $deleted
  *
  * The followings are the available model relations:
- * @property CompetitionRegistration[] $competitionRegistrations
- * @property CompetitionSource[] $competitionSources
- * @property Round[] $rounds
+ * @property Competition $competition
+ * @property Club $club
+ * @property Tie[] $ties
+ * @property Tie[] $ties1
  */
-class Competition extends ActiveRecord
+class CompetitionRegistration extends ActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'competition';
+		return 'competition_registration';
 	}
 
 	/**
@@ -37,15 +36,12 @@ class Competition extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, slug, type, source', 'required'),
-			array('', 'numerical', 'integerOnly'=>true),
-			array('name, slug', 'length', 'max'=>255),
-			array('type', 'length', 'max'=>10),
-			array('source', 'length', 'max'=>9),
-			array('status', 'length', 'max'=>11),
+			array('competition_id, club_id, identifier', 'required'),
+			array('competition_id, club_id', 'numerical', 'integerOnly'=>true),
+			array('identifier', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, slug, type, source, status, date_created, date_modified', 'safe', 'on'=>'search'),
+			array('id, competition_id, club_id, identifier, date_created, date_modified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -57,9 +53,10 @@ class Competition extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'competitionRegistrations' => array(self::HAS_MANY, 'CompetitionRegistration', 'competition_id'),
-			'competitionSources' => array(self::HAS_MANY, 'CompetitionSource', 'competition_id'),
-			'rounds' => array(self::HAS_MANY, 'Round', 'competition_id'),
+			'competition' => array(self::BELONGS_TO, 'Competition', 'competition_id'),
+			'club' => array(self::BELONGS_TO, 'Club', 'club_id'),
+			'awayTies' => array(self::HAS_MANY, 'Tie', 'away_club_id'),
+			'homeTies' => array(self::HAS_MANY, 'Tie', 'home_club_id'),
 		);
 	}
 
@@ -70,11 +67,9 @@ class Competition extends ActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'slug' => 'Slug',
-			'type' => 'Type',
-			'source' => 'Source',
-			'status' => 'Status',
+			'competition_id' => 'Competition',
+			'club_id' => 'Club',
+			'identifier' => 'Identifier',
 			'date_created' => 'Date Created',
 			'date_modified' => 'Date Modified',
 			'deleted' => 'Deleted',
@@ -100,11 +95,9 @@ class Competition extends ActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('slug',$this->slug,true);
-		$criteria->compare('type',$this->type,true);
-		$criteria->compare('source',$this->source,true);
-		$criteria->compare('status',$this->status,true);
+		$criteria->compare('competition_id',$this->competition_id);
+		$criteria->compare('club_id',$this->club_id);
+		$criteria->compare('identifier',$this->identifier,true);
 		$criteria->compare('date_created',$this->date_created,true);
 		$criteria->compare('date_modified',$this->date_modified,true);
 
@@ -117,7 +110,7 @@ class Competition extends ActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Competition the static model class
+	 * @return CompetitionRegistration the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

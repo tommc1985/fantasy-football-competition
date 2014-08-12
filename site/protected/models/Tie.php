@@ -24,10 +24,10 @@
  * @property integer $deleted
  *
  * The followings are the available model relations:
- * @property ClubRegistration $awayClub
+ * @property CompetitionRegistration $awayClub
  * @property Tie $awayTie
  * @property Tie[] $ties
- * @property ClubRegistration $homeClub
+ * @property CompetitionRegistration $homeClub
  * @property Tie $homeTie
  * @property Tie[] $ties1
  * @property Round $round
@@ -69,10 +69,10 @@ class Tie extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'awayClub' => array(self::BELONGS_TO, 'ClubRegistration', 'away_club_id'),
+			'awayClub' => array(self::BELONGS_TO, 'CompetitionRegistration', 'away_club_id'),
 			'awayTie' => array(self::BELONGS_TO, 'Tie', 'away_tie_id'),
 			'awayTies' => array(self::HAS_MANY, 'Tie', 'away_tie_id'),
-			'homeClub' => array(self::BELONGS_TO, 'ClubRegistration', 'home_club_id'),
+			'homeClub' => array(self::BELONGS_TO, 'CompetitionRegistration', 'home_club_id'),
 			'homeTie' => array(self::BELONGS_TO, 'Tie', 'home_tie_id'),
 			'homeTies' => array(self::HAS_MANY, 'Tie', 'home_tie_id'),
 			'round' => array(self::BELONGS_TO, 'Round', 'round_id'),
