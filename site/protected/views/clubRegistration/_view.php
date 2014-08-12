@@ -16,8 +16,8 @@
 	<?php echo CHtml::encode($data->identifier); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('date_added')); ?>:</b>
-	<?php echo CHtml::encode($data->date_added); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('date_created')); ?>:</b>
+	<?php echo CHtml::encode($data->date_created); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('date_modified')); ?>:</b>

@@ -28,7 +28,7 @@ $this->menu=array(
 		'replay',
 		'tie_breaker',
 		'order',
-		'date_added',
+		'date_created',
 		'date_modified',
 		'deleted',
 	),

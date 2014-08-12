@@ -13,7 +13,7 @@
 
 	<?php echo $form->textFieldRow($model,'success',array('class'=>'span5')); ?>
 
-	<?php echo $form->textFieldRow($model,'date_added',array('class'=>'span5')); ?>
+	<?php echo $form->textFieldRow($model,'date_created',array('class'=>'span5')); ?>
 
 	<?php echo $form->textFieldRow($model,'date_modified',array('class'=>'span5')); ?>
 

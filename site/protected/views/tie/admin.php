@@ -59,7 +59,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'type',
 		'status',
 		'date_modified',
-		'date_added',
+		'date_created',
 		'deleted',
 		*/
 		array(

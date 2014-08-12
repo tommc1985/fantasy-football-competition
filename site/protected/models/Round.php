@@ -14,7 +14,7 @@
  * @property integer $replay
  * @property string $tie_breaker
  * @property integer $order
- * @property string $date_added
+ * @property string $date_created
  * @property string $date_modified
  * @property integer $deleted
  *
@@ -48,7 +48,7 @@ class Round extends ActiveRecord
 			array('tie_breaker', 'length', 'max'=>5),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, parent_id, competition_id, name, start_datetime, finish_datetime, legs, replay, tie_breaker, order, date_added, date_modified', 'safe', 'on'=>'search'),
+			array('id, parent_id, competition_id, name, start_datetime, finish_datetime, legs, replay, tie_breaker, order, date_created, date_modified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -83,7 +83,7 @@ class Round extends ActiveRecord
 			'replay' => 'Replay',
 			'tie_breaker' => 'Tie Breaker',
 			'order' => 'Order',
-			'date_added' => 'Date Added',
+			'date_created' => 'Date Created',
 			'date_modified' => 'Date Modified',
 			'deleted' => 'Deleted',
 		);
@@ -117,7 +117,7 @@ class Round extends ActiveRecord
 		$criteria->compare('replay',$this->replay);
 		$criteria->compare('tie_breaker',$this->tie_breaker,true);
 		$criteria->compare('order',$this->order);
-		$criteria->compare('date_added',$this->date_added,true);
+		$criteria->compare('date_created',$this->date_created,true);
 		$criteria->compare('date_modified',$this->date_modified,true);
 
 		return new CActiveDataProvider($this, array(

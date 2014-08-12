@@ -46,7 +46,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'club_id',
 		'competition_id',
 		'identifier',
-		'date_added',
+		'date_created',
 		'date_modified',
 		/*
 		'deleted',

@@ -8,7 +8,7 @@
  * @property integer $club_id
  * @property integer $competition_id
  * @property string $identifier
- * @property string $date_added
+ * @property string $date_created
  * @property string $date_modified
  * @property integer $deleted
  *
@@ -41,7 +41,7 @@ class ClubRegistration extends ActiveRecord
 			array('identifier', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, club_id, competition_id, identifier, date_added, date_modified', 'safe', 'on'=>'search'),
+			array('id, club_id, competition_id, identifier, date_created, date_modified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -70,7 +70,7 @@ class ClubRegistration extends ActiveRecord
 			'club_id' => 'Club',
 			'competition_id' => 'Competition',
 			'identifier' => 'Identifier',
-			'date_added' => 'Date Added',
+			'date_created' => 'Date Created',
 			'date_modified' => 'Date Modified',
 			'deleted' => 'Deleted',
 		);
@@ -98,7 +98,7 @@ class ClubRegistration extends ActiveRecord
 		$criteria->compare('club_id',$this->club_id);
 		$criteria->compare('competition_id',$this->competition_id);
 		$criteria->compare('identifier',$this->identifier,true);
-		$criteria->compare('date_added',$this->date_added,true);
+		$criteria->compare('date_created',$this->date_created,true);
 		$criteria->compare('date_modified',$this->date_modified,true);
 
 		return new CActiveDataProvider($this, array(

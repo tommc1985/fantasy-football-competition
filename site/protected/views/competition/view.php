@@ -24,7 +24,7 @@ $this->menu=array(
 		'type',
 		'source',
 		'status',
-		'date_added',
+		'date_created',
 		'date_modified',
 		'deleted',
 	),

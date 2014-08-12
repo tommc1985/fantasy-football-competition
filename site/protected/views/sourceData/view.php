@@ -23,7 +23,7 @@ $this->menu=array(
 		'url',
 		'data',
 		'success',
-		'date_added',
+		'date_created',
 		'date_modified',
 		'deleted',
 	),

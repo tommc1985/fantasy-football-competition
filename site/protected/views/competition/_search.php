@@ -15,7 +15,7 @@
 
 	<?php echo $form->textFieldRow($model,'status',array('class'=>'span5','maxlength'=>11)); ?>
 
-	<?php echo $form->textFieldRow($model,'date_added',array('class'=>'span5')); ?>
+	<?php echo $form->textFieldRow($model,'date_created',array('class'=>'span5')); ?>
 
 	<?php echo $form->textFieldRow($model,'date_modified',array('class'=>'span5')); ?>
 

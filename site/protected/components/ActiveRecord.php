@@ -46,11 +46,11 @@ class ActiveRecord extends CActiveRecord
 
         if($this->isNewRecord){
             if(array_key_exists('date_created',$this->attributes)) {
-                $this->created = date('Y-m-d H:i:s');
+                $this->date_created = date('Y-m-d H:i:s');
             }
         }
 
-        if(array_key_exists('date_date_modified',$this->attributes)) {
+        if(array_key_exists('date_modified',$this->attributes)) {
             $this->date_modified = date('Y-m-d H:i:s');
         }
 

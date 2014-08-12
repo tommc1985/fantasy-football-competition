@@ -22,7 +22,7 @@ $this->menu=array(
 		'competition_id',
 		'url',
 		'order',
-		'date_added',
+		'date_created',
 		'date_modified',
 		'deleted',
 	),

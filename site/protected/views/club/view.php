@@ -21,7 +21,7 @@ $this->menu=array(
 		'id',
 		'name',
 		'manager',
-		'date_added',
+		'date_created',
 		'date_modified',
 		'deleted',
 	),

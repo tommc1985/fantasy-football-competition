@@ -9,7 +9,7 @@
  * @property string $url
  * @property string $data
  * @property integer $success
- * @property string $date_added
+ * @property string $date_created
  * @property string $date_modified
  * @property integer $deleted
  *
@@ -40,7 +40,7 @@ class SourceData extends ActiveRecord
 			array('data', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, competition_source_id, url, data, success, date_added, date_modified', 'safe', 'on'=>'search'),
+			array('id, competition_source_id, url, data, success, date_created, date_modified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,7 +67,7 @@ class SourceData extends ActiveRecord
 			'url' => 'Url',
 			'data' => 'Data',
 			'success' => 'Success',
-			'date_added' => 'Date Added',
+			'date_created' => 'Date Created',
 			'date_modified' => 'Date Modified',
 			'deleted' => 'Deleted',
 		);
@@ -96,7 +96,7 @@ class SourceData extends ActiveRecord
 		$criteria->compare('url',$this->url,true);
 		$criteria->compare('data',$this->data,true);
 		$criteria->compare('success',$this->success);
-		$criteria->compare('date_added',$this->date_added,true);
+		$criteria->compare('date_created',$this->date_created,true);
 		$criteria->compare('date_modified',$this->date_modified,true);
 
 		return new CActiveDataProvider($this, array(

@@ -7,7 +7,7 @@
  * @property integer $id
  * @property string $name
  * @property string $manager
- * @property string $date_added
+ * @property string $date_created
  * @property string $date_modified
  * @property integer $deleted
  *
@@ -37,7 +37,7 @@ class Club extends ActiveRecord
 			array('name, manager', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, manager, date_added, date_modified', 'safe', 'on'=>'search'),
+			array('id, name, manager, date_created, date_modified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,7 +62,7 @@ class Club extends ActiveRecord
 			'id' => 'ID',
 			'name' => 'Name',
 			'manager' => 'Manager',
-			'date_added' => 'Date Added',
+			'date_created' => 'Date Created',
 			'date_modified' => 'Date Modified',
 			'deleted' => 'Deleted',
 		);
@@ -89,7 +89,7 @@ class Club extends ActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('manager',$this->manager,true);
-		$criteria->compare('date_added',$this->date_added,true);
+		$criteria->compare('date_created',$this->date_created,true);
 		$criteria->compare('date_modified',$this->date_modified,true);
 
 		return new CActiveDataProvider($this, array(

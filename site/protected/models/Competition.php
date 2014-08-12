@@ -10,7 +10,7 @@
  * @property string $type
  * @property string $source
  * @property string $status
- * @property string $date_added
+ * @property string $date_created
  * @property string $date_modified
  * @property integer $deleted
  *
@@ -45,7 +45,7 @@ class Competition extends ActiveRecord
 			array('status', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, slug, type, source, status, date_added, date_modified', 'safe', 'on'=>'search'),
+			array('id, name, slug, type, source, status, date_created, date_modified', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -75,7 +75,7 @@ class Competition extends ActiveRecord
 			'type' => 'Type',
 			'source' => 'Source',
 			'status' => 'Status',
-			'date_added' => 'Date Added',
+			'date_created' => 'Date Created',
 			'date_modified' => 'Date Modified',
 			'deleted' => 'Deleted',
 		);
@@ -105,7 +105,7 @@ class Competition extends ActiveRecord
 		$criteria->compare('type',$this->type,true);
 		$criteria->compare('source',$this->source,true);
 		$criteria->compare('status',$this->status,true);
-		$criteria->compare('date_added',$this->date_added,true);
+		$criteria->compare('date_created',$this->date_created,true);
 		$criteria->compare('date_modified',$this->date_modified,true);
 
 		return new CActiveDataProvider($this, array(

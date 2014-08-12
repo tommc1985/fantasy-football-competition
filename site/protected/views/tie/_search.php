@@ -35,7 +35,7 @@
 
 	<?php echo $form->textFieldRow($model,'date_modified',array('class'=>'span5')); ?>
 
-	<?php echo $form->textFieldRow($model,'date_added',array('class'=>'span5')); ?>
+	<?php echo $form->textFieldRow($model,'date_created',array('class'=>'span5')); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

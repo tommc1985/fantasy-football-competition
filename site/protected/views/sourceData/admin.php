@@ -47,7 +47,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'url',
 		'data',
 		'success',
-		'date_added',
+		'date_created',
 		/*
 		'date_modified',
 		'deleted',

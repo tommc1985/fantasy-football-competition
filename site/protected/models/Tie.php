@@ -20,7 +20,7 @@
  * @property string $type
  * @property string $status
  * @property string $date_modified
- * @property string $date_added
+ * @property string $date_created
  * @property integer $deleted
  *
  * The followings are the available model relations:
@@ -57,7 +57,7 @@ class Tie extends ActiveRecord
 			array('status', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, round_id, home_tie_id, away_tie_id, home_club_id, away_club_id, name, home_club_points, away_club_points, home_club_tie_breaker, away_club_tie_breaker, start_datetime, finish_datetime, type, status, date_modified, date_added', 'safe', 'on'=>'search'),
+			array('id, round_id, home_tie_id, away_tie_id, home_club_id, away_club_id, name, home_club_points, away_club_points, home_club_tie_breaker, away_club_tie_breaker, start_datetime, finish_datetime, type, status, date_modified, date_created', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -101,7 +101,7 @@ class Tie extends ActiveRecord
 			'type' => 'Type',
 			'status' => 'Status',
 			'date_modified' => 'Date Modified',
-			'date_added' => 'Date Added',
+			'date_created' => 'Date Created',
 			'deleted' => 'Deleted',
 		);
 	}
@@ -140,7 +140,7 @@ class Tie extends ActiveRecord
 		$criteria->compare('type',$this->type,true);
 		$criteria->compare('status',$this->status,true);
 		$criteria->compare('date_modified',$this->date_modified,true);
-		$criteria->compare('date_added',$this->date_added,true);
+		$criteria->compare('date_created',$this->date_created,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

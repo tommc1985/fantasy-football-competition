@@ -22,7 +22,7 @@ $this->menu=array(
 		'club_id',
 		'competition_id',
 		'identifier',
-		'date_added',
+		'date_created',
 		'date_modified',
 		'deleted',
 	),
