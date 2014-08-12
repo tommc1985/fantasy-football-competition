@@ -11,11 +11,9 @@
 
 	<?php echo $form->textFieldRow($model,'slug',array('class'=>'span5','maxlength'=>255)); ?>
 
-	<?php echo $form->textFieldRow($model,'type',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php echo $form->dropDownListRow($model,'type', $model::types(),array('class'=>'span5','empty'=>'--- Select ---')); ?>
 
-	<?php echo $form->textFieldRow($model,'source',array('class'=>'span5','maxlength'=>9)); ?>
-
-	<?php echo $form->textFieldRow($model,'status',array('class'=>'span5','maxlength'=>11)); ?>
+	<?php echo $form->dropDownListRow($model,'source', $model::sources(),array('class'=>'span5','empty'=>'--- Select ---')); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

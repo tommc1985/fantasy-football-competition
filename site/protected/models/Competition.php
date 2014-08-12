@@ -114,6 +114,30 @@ class Competition extends ActiveRecord
 	}
 
 	/**
+	 * Types of Competition
+	 * @return array    Competition Types
+	 */
+	public static function types()
+	{
+		return array(
+			'knockout' => 'Knockout',
+			'league' => 'League',
+			'tournament' => 'Tournament'
+		);
+	}
+
+	/**
+	 * Sourced to be used for the Competition
+	 * @return array    Competition Sources
+	 */
+	public static function sources()
+	{
+		return array(
+			'telegraph' => 'Telegraph',
+		);
+	}
+
+	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
