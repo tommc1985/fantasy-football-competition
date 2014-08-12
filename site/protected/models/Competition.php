@@ -120,8 +120,8 @@ class Competition extends ActiveRecord
 	public static function types()
 	{
 		return array(
-			'knockout' => 'Knockout',
-			'league' => 'League',
+			'knockout'   => 'Knockout',
+			'league'     => 'League',
 			'tournament' => 'Tournament'
 		);
 	}
