@@ -29,8 +29,11 @@ $this->menu=array(
 	),
 )); ?>
 
+<h2>Proposed Rounds</h2>
+
 <?php
 $tournamentStructure = new KnockoutTournamentStructure(count($model->registrations));
+$tournamentStructure->display(true);
 
 echo '<pre>';
 var_dump($tournamentStructure);

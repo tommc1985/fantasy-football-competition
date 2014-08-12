@@ -8,7 +8,16 @@ class KnockoutTournamentStructure
         $numberOfRounds,
         $nextLowestPowerOfTwo,
         $numberOfFirstRoundTies,
-        $structure;
+        $structure,
+        $roundNames = array(
+            "Final",
+            "Semi Final",
+            "Quarter Final",
+            "Last 16",
+            "Last 32",
+            "% Round"
+        ),
+        $currentMatchNumber;
 
         /**
          * Constructor
@@ -226,6 +235,7 @@ class KnockoutTournamentStructure
     {
         $rounds = array();
         $tieNumber = $this->getNextHighestPowerOfTwo() - 1;
+        $this->currentMatchNumber = $this->getNumberOfTies();
 
         for ($roundNumber = 1;$roundNumber <= $this->getNumberOfRounds();$roundNumber++) {
             if ($this->isFirstRound($roundNumber)) {
@@ -277,7 +287,9 @@ class KnockoutTournamentStructure
         $j = 0;
         while($j < $roundTieCount) {
 
-            array_unshift($ties, $this->buildFirstRoundTie($tieNumber, $previousRoundTieNumber, $outstandingByes));
+            $tie = $this->buildFirstRoundTie($tieNumber, $previousRoundTieNumber, $outstandingByes);
+
+            array_unshift($ties, $tie);
 
             $tieNumber--;
 
@@ -289,11 +301,14 @@ class KnockoutTournamentStructure
 
     public function buildNormalTie($tieNumber, $previousRoundTieNumber)
     {
+        $previousRoundTieNumber = $previousRoundTieNumber - 2;
+
         return (object) array(
             'tie_number'      => $tieNumber,
+            'match_number'    => $this->currentMatchNumber--,
             'type'            => 'tie',
-            'away_tie_winner' => $previousRoundTieNumber--,
-            'home_tie_winner' => $previousRoundTieNumber--,
+            'home_tie_winner' => $previousRoundTieNumber + 1,
+            'away_tie_winner' => $previousRoundTieNumber + 2,
         );
     }
 
@@ -303,13 +318,14 @@ class KnockoutTournamentStructure
             $outstandingByes--;
 
             return (object) array(
-                'tie_number'      => $tieNumber,
-                'type'            => 'bye',
+                'tie_number' => $tieNumber,
+                'type'       => 'bye',
             );
         }
 
         return (object) array(
             'tie_number'      => $tieNumber,
+            'match_number'    => $this->currentMatchNumber--,
             'type'            => 'match',
         );
     }
@@ -317,5 +333,64 @@ class KnockoutTournamentStructure
     public function isFirstRound($roundNumber)
     {
         return $roundNumber == $this->getNumberOfRounds();
+    }
+
+    public function display($echo = true)
+    {
+        $html = '<table>
+<tbody>';
+
+        $i = 0;
+        foreach ($this->structure as $ties) {
+            $html .= '<tr>
+    <td colspan="4">Round ' . $i . '</td>
+</tr>';
+
+            foreach ($ties as $tie) {
+                switch($tie->type) {
+                    case 'match':
+            $html .= '<tr>
+    <td colspan="4">Match ' . $tie->match_number . '</td>
+</tr>';
+                        break;
+                    case 'tie':
+            $html .= '<tr>
+    <td class="span1">Match ' . $tie->match_number . '</td>
+    <td class="span5">' . $this->displayOpponent($tie->home_tie_winner) . '</td>
+    <td class="span1"> vs</td>
+    <td class="span5">' . $this->displayOpponent($tie->away_tie_winner) . '</td>
+</tr>';
+                        break;
+                }
+            }
+
+            $i++;
+        }
+
+        $html .= '</tbody>
+</table>';
+
+        if ($echo) {
+            echo $html;
+        }
+
+        return $html;
+    }
+
+    public function displayOpponent($previousTieNumber)
+    {
+        foreach ($this->structure as $ties) {
+            foreach ($ties as $tie) {
+                if ($tie->tie_number == $previousTieNumber) {
+                    switch ($tie->type) {
+                        case 'bye':
+                            return 'Bye';
+                        default:
+                            return "Winner of Match {$tie->match_number}";
+                    }
+                }
+
+            }
+        }
     }
 }
