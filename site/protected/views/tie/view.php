@@ -35,6 +35,5 @@ $this->menu=array(
 		'status',
 		'date_modified',
 		'date_created',
-		'deleted',
 	),
 )); ?>

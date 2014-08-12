@@ -25,6 +25,5 @@ $this->menu=array(
 		'success',
 		'date_created',
 		'date_modified',
-		'deleted',
 	),
 )); ?>

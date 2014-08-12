@@ -20,9 +20,5 @@
 	<?php echo CHtml::encode($data->date_modified); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('deleted')); ?>:</b>
-	<?php echo CHtml::encode($data->deleted); ?>
-	<br />
-
 
 </div>

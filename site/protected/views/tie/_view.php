@@ -69,10 +69,6 @@
 	<?php echo CHtml::encode($data->date_created); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('deleted')); ?>:</b>
-	<?php echo CHtml::encode($data->deleted); ?>
-	<br />
-
 	*/ ?>
 
 </div>

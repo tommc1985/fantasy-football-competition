@@ -23,6 +23,5 @@ $this->menu=array(
 		'manager',
 		'date_created',
 		'date_modified',
-		'deleted',
 	),
 )); ?>

@@ -30,6 +30,5 @@ $this->menu=array(
 		'order',
 		'date_created',
 		'date_modified',
-		'deleted',
 	),
 )); ?>
