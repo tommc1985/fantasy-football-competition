@@ -28,3 +28,10 @@ $this->menu=array(
 		'date_modified',
 	),
 )); ?>
+
+<?php
+$tournamentStructure = new KnockoutTournamentStructure(count($model->registrations));
+
+echo '<pre>';
+var_dump($tournamentStructure);
+echo '</pre>';

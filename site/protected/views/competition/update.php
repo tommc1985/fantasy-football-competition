@@ -16,3 +16,5 @@ $this->menu=array(
 <h1>Update Competition</h1>
 
 <?php echo $this->renderPartial('_form',array('model'=>$model)); ?>
+
+<?php //echo $this->renderPartial('../competitionRegistration/_horizontal_form',array('models'=>$model->registrations)); ?>
