@@ -27,7 +27,7 @@ class CompetitionSourceController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','create','update','admin','delete'),
+				'actions'=>array('index','view','create','update','admin','delete','fetch'),
 				'users'=>array('*'),
 			),/*
 			array('allow',  // allow all users to perform 'index' and 'view' actions
@@ -150,6 +150,39 @@ class CompetitionSourceController extends Controller
 		$this->render('admin',array(
 			'model'=>$model,
 		));
+	}
+
+	/**
+	 * Fetch.
+	 */
+	public function actionFetch()
+	{
+		$competitions = Competition::model()->findAllByAttributes(
+		    array('status'=>'started')
+		);
+
+		foreach ($competitions  as $competition) {
+			foreach ($competition->sources as $source) {
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+				curl_setopt($ch, CURLOPT_URL,$source->url);
+				$data = curl_exec($ch);
+				curl_close ($ch);
+				unset($ch);
+
+				$sourceDataModel = new SourceData;
+				$sourceDataModel->attributes = array(
+					'competition_source_id' => $source->id,
+					'url'                   => $source->url,
+					'data'                  => $data,
+					'success'               => 1,
+
+				);
+				$sourceDataModel->save();
+				unset($sourceDataModel);
+			}
+		}
+
 	}
 
 	/**
