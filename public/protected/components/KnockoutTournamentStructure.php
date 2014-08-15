@@ -10,7 +10,8 @@ class KnockoutTournamentStructure
         $numberOfFirstRoundTies,
         $structure,
         $roundNames,
-        $currentMatchNumber;
+        $currentMatchNumber,
+        $currentTeamNumber;
 
         /**
          * Constructor
@@ -229,6 +230,7 @@ class KnockoutTournamentStructure
         $rounds = array();
         $tieNumber = $this->getNextHighestPowerOfTwo() - 1;
         $this->currentMatchNumber = $this->getNumberOfTies();
+        $this->currentTeamNumber = 1;
 
         for ($roundNumber = 1;$roundNumber <= $this->getNumberOfRounds();$roundNumber++) {
             if ($this->isFirstRound($roundNumber)) {

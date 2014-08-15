@@ -908,3 +908,29 @@ Stack trace:
 #5 {main}
 REQUEST_URI=/competitionSource/fetch
 ---
+2014/08/15 21:48:50 [error] [php] Object of class KnockoutTournamentStructure could not be converted to string (/home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/components/KnockoutTournamentStructure.php:420)
+Stack trace:
+#0 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CBaseController.php(126): require()
+#1 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CBaseController.php(95): CompetitionController->renderInternal()
+#2 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(869): CompetitionController->renderFile()
+#3 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(782): CompetitionController->renderPartial()
+#4 /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php(59): CompetitionController->render()
+#5 unknown(0): CompetitionController->actionView()
+#6 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs()
+#7 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/actions/CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#8 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(308): CInlineAction->runWithParams()
+#9 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilterChain.php(133): CompetitionController->runAction()
+#10 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#11 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#12 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CInlineFilter.php(58): CompetitionController->filterAccessControl()
+#13 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#14 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(291): CFilterChain->run()
+#15 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(265): CompetitionController->runActionWithFilters()
+#16 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(282): CompetitionController->run()
+#17 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#18 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#19 /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php(13): CWebApplication->run()
+REQUEST_URI=/competition/2
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/components/KnockoutTournamentStructure.php (420)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/components/KnockoutTournamentStructure.php (389)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/views/competition/view.php (36)
