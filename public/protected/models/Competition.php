@@ -57,8 +57,8 @@ class Competition extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'registrations' => array(self::HAS_MANY, 'CompetitionRegistration', 'competition_id'),
-			'sources' => array(self::HAS_MANY, 'CompetitionSource', 'competition_id'),
+			'registrations' => array(self::HAS_MANY, 'CompetitionRegistration', 'competition_id', 'order'=>'club.name ASC', 'with'=>'club'),
+			'sources' => array(self::HAS_MANY, 'CompetitionSource', 'competition_id', 'order'=>'competition_source.order ASC', 'with'=>'sources'),
 			'rounds' => array(self::HAS_MANY, 'Round', 'competition_id'),
 		);
 	}
@@ -135,6 +135,33 @@ class Competition extends ActiveRecord
 		return array(
 			'telegraph' => 'Telegraph',
 		);
+	}
+
+	/**
+	 * Fetch Source Data
+	 * @return array    Competition Sources
+	 */
+	public function fetchSourceData()
+	{
+		foreach ($this->sources as $source) {
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+			curl_setopt($ch, CURLOPT_URL,$source->url);
+			$data = curl_exec($ch);
+			curl_close ($ch);
+			unset($ch);
+
+			$sourceDataModel = new SourceData;
+			$sourceDataModel->attributes = array(
+				'competition_source_id' => $source->id,
+				'url'                   => $source->url,
+				'data'                  => $data,
+				'success'               => 1,
+
+			);
+			$sourceDataModel->save();
+			unset($sourceDataModel);
+		}
 	}
 
 	/**

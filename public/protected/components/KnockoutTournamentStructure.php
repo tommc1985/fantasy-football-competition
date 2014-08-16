@@ -359,7 +359,12 @@ class KnockoutTournamentStructure
         return $roundNumber == $this->getNumberOfRounds();
     }
 
-    public function display($echo = true)
+    /**
+     * Display Structure of Tournament
+     * @param  boolean $echo Should the struture be echoed?
+     * @return string
+     */
+    public function displayStructure($echo = true)
     {
         $html = '<table class="table table-striped table-bordered">
 <tbody>';
@@ -377,7 +382,7 @@ class KnockoutTournamentStructure
             $html .= '<tr>
     <td class="span2">Match ' . $tie->match_number . '</td>
     <td class="span4">Team</td>
-    <td class="span2"> vs</td>
+    <td class="span2">vs</td>
     <td class="span4">Team</td>
 </tr>';
                         break;
@@ -385,7 +390,7 @@ class KnockoutTournamentStructure
             $html .= '<tr>
     <td class="span2">Match ' . $tie->match_number . '</td>
     <td class="span4">' . $this->displayOpponent($tie->home_tie_winner) . '</td>
-    <td class="span2"> vs</td>
+    <td class="span2">vs</td>
     <td class="span4">' . $this->displayOpponent($tie->away_tie_winner) . '</td>
 </tr>';
                         break;

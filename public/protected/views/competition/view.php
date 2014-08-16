@@ -29,8 +29,18 @@ $this->menu=array(
 	),
 )); ?>
 
+<h2>Registered Teams</h2>
+
+<ul>
+<?php
+foreach ($model->registrations as $registration) { ?>
+	<li><?php echo CHtml::encode($registration->club->name); ?> (<?php echo CHtml::encode($registration->club->manager); ?>)</li>
+<?php
+} ?>
+</ul>
+
 <h2>Proposed Rounds</h2>
 
 <?php
 $tournamentStructure = new KnockoutTournamentStructure(count($model->registrations));
-$tournamentStructure->display(true);
+$tournamentStructure->displayStructure(true);

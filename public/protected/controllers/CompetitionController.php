@@ -27,7 +27,7 @@ class CompetitionController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','create','update','admin','delete'),
+				'actions'=>array('index','view','create','update','admin','delete','rounds'),
 				'users'=>array('*'),
 			),/*
 			array('allow',  // allow all users to perform 'index' and 'view' actions
@@ -54,8 +54,13 @@ class CompetitionController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$model = $this->loadModel($id);
+
+		$tournamentStructure = new KnockoutTournamentStructure(count($model->registrations));
+
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'               => $model,
+			'tournamentStructure' => $tournamentStructure,
 		));
 	}
 
@@ -149,6 +154,60 @@ class CompetitionController extends Controller
 
 		$this->render('admin',array(
 			'model'=>$model,
+		));
+	}
+
+	/**
+	 * Updates a particular model rounds.
+	 * @param integer $id the ID of the model to be updated
+	 */
+	public function actionRounds($id)
+	{
+		$model=$this->loadModel($id);
+
+		$tournamentStructure = new KnockoutTournamentStructure(count($model->registrations));
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['Round']))
+		{
+			$success = true;
+			$i = 0;
+			while ($i < $tournamentStructure->getNumberOfRounds()) {
+				$round = new Round();
+				$round->attributes=$_POST['Round'][$i];
+				if(!$round->save())
+					$success = false;
+				$i++;
+			}
+
+			if($success)
+				$this->redirect(array('rounds','id'=>$model->id));
+		}
+
+		$existingRounds = $model->rounds;
+
+		if (!$existingRounds) {
+			$rounds = array();
+			$i = 0;
+			while ($i < $tournamentStructure->getNumberOfRounds()) {
+				$round = new Round();
+				$round->name = $tournamentStructure->getRoundName($i);
+				$round->competition_id = $id;
+				$round->order = $i;
+
+				$rounds[] = $round;
+				$i++;
+			}
+		} else {
+			$rounds = $existingRounds;
+		}
+
+		$this->render('rounds',array(
+			'model'               => $model,
+			'tournamentStructure' => $tournamentStructure,
+			'rounds'			  => $rounds,
 		));
 	}
 

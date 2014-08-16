@@ -26,6 +26,17 @@
  */
 class Round extends ActiveRecord
 {
+
+    /**
+     * Executes after a record has been retrieved from the DB
+     */
+    public function afterFind()
+    {
+		$this->start_datetime  = substr($this->start_datetime, 0, 10);
+		$this->finish_datetime = substr($this->finish_datetime, 0, 10);
+
+        parent::afterFind();
+    }
 	/**
 	 * @return string the associated database table name
 	 */
@@ -134,5 +145,28 @@ class Round extends ActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	/**
+	 * Options for Round Replay
+	 * @return array    Competition Sources
+	 */
+	public static function replayOptions()
+	{
+		return array(
+			'0' => 'No',
+			'1' => 'Yes',
+		);
+	}
+
+	/**
+	 * Options for Round Replay
+	 * @return array    Competition Sources
+	 */
+	public static function tiebreakers()
+	{
+		return array(
+			'goals' => 'Goals',
+		);
 	}
 }

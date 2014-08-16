@@ -41,29 +41,11 @@ class ProcessController extends Controller
 	public function actionIndex()
 	{
 		$competitions = Competition::model()->findAllByAttributes(
-		    array('status'=>'started')
+		    array('status'=>'in_progress')
 		);
 
 		foreach ($competitions  as $competition) {
-			foreach ($competition->sources as $source) {
-				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
-				curl_setopt($ch, CURLOPT_URL,$source->url);
-				$data = curl_exec($ch);
-				curl_close ($ch);
-				unset($ch);
-
-				$sourceDataModel = new SourceData;
-				$sourceDataModel->attributes = array(
-					'competition_source_id' => $source->id,
-					'url'                   => $source->url,
-					'data'                  => $data,
-					'success'               => 1,
-
-				);
-				$sourceDataModel->save();
-				unset($sourceDataModel);
-			}
+			$competition->fetchSourceData();
 		}
 
 		$this->render('index');

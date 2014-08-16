@@ -19,10 +19,10 @@ class Controller extends CController
 		array('label'=>'Home', 'url'=>array('/site/index')),
 		array('label'=>'Club', 'url'=>array('/club')),
 		array('label'=>'Competition', 'url'=>array('/competition')),
-		array('label'=>'Competition Registration', 'url'=>array('competitionRegistration')),
-		array('label'=>'Competition Source', 'url'=>array('competitionSource')),
-		array('label'=>'Round', 'url'=>array('round')),
-		array('label'=>'Source Data', 'url'=>array('sourceData')),
+		array('label'=>'Competition Registration', 'url'=>array('/competitionRegistration')),
+		array('label'=>'Competition Source', 'url'=>array('/competitionSource')),
+		array('label'=>'Round', 'url'=>array('/round')),
+		array('label'=>'Source Data', 'url'=>array('/sourceData')),
 		array('label'=>'Tie', 'url'=>array('tie')),
 	);
 	/**
