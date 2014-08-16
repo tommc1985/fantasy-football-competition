@@ -153,39 +153,6 @@ class CompetitionSourceController extends Controller
 	}
 
 	/**
-	 * Fetch.
-	 */
-	public function actionFetch()
-	{
-		$competitions = Competition::model()->findAllByAttributes(
-		    array('status'=>'started')
-		);
-
-		foreach ($competitions  as $competition) {
-			foreach ($competition->sources as $source) {
-				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
-				curl_setopt($ch, CURLOPT_URL,$source->url);
-				$data = curl_exec($ch);
-				curl_close ($ch);
-				unset($ch);
-
-				$sourceDataModel = new SourceData;
-				$sourceDataModel->attributes = array(
-					'competition_source_id' => $source->id,
-					'url'                   => $source->url,
-					'data'                  => $data,
-					'success'               => 1,
-
-				);
-				$sourceDataModel->save();
-				unset($sourceDataModel);
-			}
-		}
-
-	}
-
-	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer the ID of the model to be loaded

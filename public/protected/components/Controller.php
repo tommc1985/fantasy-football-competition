@@ -14,6 +14,17 @@ class Controller extends CController
 	 * @var array context menu items. This property will be assigned to {@link CMenu::items}.
 	 */
 	public $menu=array();
+
+	public $headerMenu=array(
+		array('label'=>'Home', 'url'=>array('/site/index')),
+		array('label'=>'Club', 'url'=>array('/club')),
+		array('label'=>'Competition', 'url'=>array('/competition')),
+		array('label'=>'Competition Registration', 'url'=>array('competitionRegistration')),
+		array('label'=>'Competition Source', 'url'=>array('competitionSource')),
+		array('label'=>'Round', 'url'=>array('round')),
+		array('label'=>'Source Data', 'url'=>array('sourceData')),
+		array('label'=>'Tie', 'url'=>array('tie')),
+	);
 	/**
 	 * @var array the breadcrumbs of the current page. The value of this property will
 	 * be assigned to {@link CBreadcrumbs::links}. Please refer to {@link CBreadcrumbs::links}

@@ -28,17 +28,7 @@
 
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
-			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'Club', 'url'=>array('/club')),
-				array('label'=>'Competition', 'url'=>array('/competition')),
-				array('label'=>'Competition Registration', 'url'=>array('competitionRegistration')),
-				array('label'=>'Competition Source', 'url'=>array('competitionSource')),
-				array('label'=>'Round', 'url'=>array('round')),
-				array('label'=>'Source Data', 'url'=>array('sourceData')),
-				array('label'=>'Tie', 'url'=>array('tie')),
-				/*array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)*/
-			),
+			'items'=>$this->headerMenu,
 		)); ?>
 	</div><!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>
