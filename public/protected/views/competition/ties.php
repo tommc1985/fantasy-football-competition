@@ -33,24 +33,29 @@ $this->menu=array(
 
 <h2>Matches</h2>
 
-
-<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
-	'id'=>'rounds-form',
-	'enableAjaxValidation'=>false,
-)); ?>
-
 <?php
-if (isset($model->rounds[0]) && !$model->rounds[0]->ties) {
-	$tournamentStructure = new KnockoutTournamentStructure(count($model->registrations));
-	$tournamentStructure->displayStructureForm($model->id, true);
-} ?>
-
-<div class="form-actions">
-	<?php $this->widget('bootstrap.widgets.TbButton', array(
-		'buttonType'=>'submit',
-		'type'=>'primary',
-		'label'=>'Create Matches',
+if (!$model->rounds[0]->ties) { ?>
+	<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
+		'id'=>'rounds-form',
+		'enableAjaxValidation'=>false,
 	)); ?>
-</div>
 
-<?php $this->endWidget(); ?>
+	<?php
+	if (isset($model->rounds[0]) && !$model->rounds[0]->ties) {
+		$tournamentStructure = new KnockoutTournamentStructure(count($model->registrations));
+		$tournamentStructure->displayStructureForm($model->id, true);
+	} ?>
+
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'buttonType'=>'submit',
+			'type'=>'primary',
+			'label'=>'Create Matches',
+		)); ?>
+	</div>
+
+	<?php $this->endWidget(); ?>
+<?php
+} else {
+	echo '<p>Matches have been generated</p>';
+} ?>

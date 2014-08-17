@@ -522,4 +522,9 @@ class KnockoutTournamentStructure
 
         return $html;
     }
+
+    public function getStructure()
+    {
+        return $this->structure;
+    }
 }

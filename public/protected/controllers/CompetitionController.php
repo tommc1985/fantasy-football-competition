@@ -254,12 +254,64 @@ class CompetitionController extends Controller
 
 		$tournamentStructure = new KnockoutTournamentStructure(count($model->registrations));
 
-		if(isset($_POST['club'])) {
+		if(isset($_POST['club']) && !$model->rounds[0]->ties) {
+			$ties = array();
+			$clubNumber = 0;
+			foreach ($tournamentStructure->getStructure() as $roundNumber => $roundStructure) {
+				$round = $model->rounds[$roundNumber];
+				foreach ($roundStructure as $match) {
+					$tie = new Tie();
+					switch ($match->type) {
+						case 'match':
+							$tie->attributes=array(
+								'round_id'        => $round->id,
+								'home_club_id'    => $_POST['club'][$clubNumber],
+								'away_club_id'    => $_POST['club'][$clubNumber + 1],
+								'name'            => "Match {$match->match_number}",
+								'start_datetime'  => $round->start_datetime,
+								'finish_datetime' => $round->finish_datetime,
+								'type'            => 'match',
+								'status'          => 'provisional',
+							);
+							$clubNumber = $clubNumber + 2;
 
+							$tie->save();
+							break;
+						case 'bye':
+							$tie->attributes=array(
+								'round_id'        => $round->id,
+								'home_club_id'    => $_POST['club'][$clubNumber],
+								'name'            => "Bye",
+								'start_datetime'  => $round->start_datetime,
+								'finish_datetime' => $round->finish_datetime,
+								'type'            => 'bye',
+								'status'          => 'provisional',
+							);
+							$clubNumber++;
 
+							$tie->save();
+							break;
+						case 'tie':
+							$tie->attributes=array(
+								'round_id'        => $round->id,
+								'home_tie_id'     => $ties[$match->home_tie_winner]->id,
+								'away_tie_id'     => $ties[$match->away_tie_winner]->id,
+								'name'            => "Match {$match->match_number}",
+								'start_datetime'  => $round->start_datetime,
+								'finish_datetime' => $round->finish_datetime,
+								'type'            => 'match',
+								'status'          => 'provisional',
+							);
 
-			if (false)
-				$this->redirect(array('rounds','id'=>$model->id));
+							$tie->save();
+							break;
+					}
+
+					$ties[$match->tie_number] = $tie;
+				}
+			}
+
+			$this->redirect(array('ties','id'=>$model->id));
 		}
 
 		$this->render('ties',array(

@@ -46,3 +46,8 @@ foreach ($model->registrations as $registration) { ?>
 <?php
 $tournamentStructure = new KnockoutTournamentStructure(count($model->registrations));
 $tournamentStructure->displayStructure(true);
+
+?>
+<pre>
+<?php var_dump($tournamentStructure); ?>
+</pre>
