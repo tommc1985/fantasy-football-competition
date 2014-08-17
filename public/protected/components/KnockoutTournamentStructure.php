@@ -415,13 +415,17 @@ class KnockoutTournamentStructure
      * @param  integer $previousTieNumber Previous Tie Number
      * @return string
      */
-    public function displayOpponent($previousTieNumber)
+    public function displayOpponent($previousTieNumber,$type = '',$clubs=array())
     {
         foreach ($this->structure as $ties) {
             foreach ($ties as $tie) {
                 if ($tie->tie_number == $previousTieNumber) {
                     switch ($tie->type) {
                         case 'bye':
+                            if ($type == 'form') {
+                                return CHtml::dropDownList('club[]', '', $clubs,array('class'=>'span3','empty'=>'--- Select ---'));
+                            }
+
                             return 'Bye';
                         default:
                             return "Winner of Match {$tie->match_number}";
@@ -462,5 +466,60 @@ class KnockoutTournamentStructure
         }
 
         return sprintf('Round %d', $roundNumber + 1);
+    }
+
+    /**
+     * Display Structure of Tournament
+     * @param  boolean $echo Should the struture be echoed?
+     * @return string
+     */
+    public function displayStructureForm($competitionId, $echo = true)
+    {
+        $clubs = CHtml::listData(CompetitionRegistration::model()->findAllByAttributes(
+            array('competition_id'=>$competitionId)
+        ), 'id', 'club.name');
+
+        $html = '<table class="table table-striped table-bordered">
+<tbody>';
+
+        $i = 0;
+        $teamNumber = 1;
+        foreach ($this->structure as $ties) {
+            $html .= '<tr>
+    <td colspan="4"><strong>' . $this->getRoundName($i) . '</strong></td>
+</tr>';
+
+            foreach ($ties as $tie) {
+                switch($tie->type) {
+                    case 'match':
+            $html .= '<tr>
+    <td class="span2">Match ' . $tie->match_number . '</td>
+    <td class="span4">' . CHtml::dropDownList('club[]', '', $clubs,array('class'=>'span3','empty'=>'--- Select ---')) . '</td>
+    <td class="span2">vs</td>
+    <td class="span4">' . CHtml::dropDownList('club[]', '', $clubs,array('class'=>'span3','empty'=>'--- Select ---')) . '</td>
+</tr>';
+                        break;
+                    case 'tie':
+            $html .= '<tr>
+    <td class="span2">Match ' . $tie->match_number . '</td>
+    <td class="span4">' . $this->displayOpponent($tie->home_tie_winner,'form',$clubs) . '</td>
+    <td class="span2">vs</td>
+    <td class="span4">' . $this->displayOpponent($tie->away_tie_winner,'form',$clubs) . '</td>
+</tr>';
+                        break;
+                }
+            }
+
+            $i++;
+        }
+
+        $html .= '</tbody>
+</table>';
+
+        if ($echo) {
+            echo $html;
+        }
+
+        return $html;
     }
 }

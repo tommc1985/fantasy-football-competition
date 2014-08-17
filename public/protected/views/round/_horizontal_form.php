@@ -14,3 +14,35 @@ if ($errorSummary) { ?>
 	<td><?php echo CHtml::activeDropDownList($model,"[{$row}]replay", Round::replayOptions(),array('class'=>'span1','empty'=>'--- Select ---')); ?></td>
 	<td><?php echo CHtml::activeDropDownList($model,"[{$row}]tie_breaker", Round::tiebreakers(),array('class'=>'span1')); ?></td>
 </tr>
+<?php
+$replayRound = $model->rounds ? $model->rounds[0] : new Round();
+if ($replayRound) { ?>
+<tr id="replay_<?php echo $row; ?>">
+    <td>Replay Date<?php echo CHtml::activeHiddenField($replayRound,"[{$row}][replay_round]id",array('class'=>'span1')); ?></td>
+    <td><?php echo CHtml::activeDateField($replayRound,"[{$row}][replay_round]start_datetime",array('class'=>'span2')); ?></td>
+    <td><?php echo CHtml::activeDateField($replayRound,"[{$row}][replay_round]finish_datetime",array('class'=>'span2')); ?></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+</tr>
+
+<script type="text/javascript">
+function showHideTie<?php echo $row; ?>()
+{
+    if (jQuery('#Round_<?php echo $row; ?>_replay').val() == 1) {
+        jQuery('#replay_<?php echo $row; ?>').show();
+    } else {
+        jQuery('#replay_<?php echo $row; ?>').hide();
+    }
+}
+
+jQuery(document).ready(function() {
+    showHideTie<?php echo $row; ?>();
+});
+
+jQuery('#Round_<?php echo $row; ?>_replay').on('change', function() {
+    showHideTie<?php echo $row; ?>();
+});
+</script>
+<?php
+} ?>

@@ -15,7 +15,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Competition</h1>
+<h1>Competition Matches</h1>
 
 <?php $this->widget('bootstrap.widgets.TbDetailView',array(
 	'data'=>$model,
@@ -31,18 +31,26 @@ $this->menu=array(
 	),
 )); ?>
 
-<h2>Registered Teams</h2>
+<h2>Matches</h2>
 
-<ul>
+
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
+	'id'=>'rounds-form',
+	'enableAjaxValidation'=>false,
+)); ?>
+
 <?php
-foreach ($model->registrations as $registration) { ?>
-	<li><?php echo CHtml::encode($registration->club->name); ?> (<?php echo CHtml::encode($registration->club->manager); ?>)</li>
-<?php
+if (isset($model->rounds[0]) && !$model->rounds[0]->ties) {
+	$tournamentStructure = new KnockoutTournamentStructure(count($model->registrations));
+	$tournamentStructure->displayStructureForm($model->id, true);
 } ?>
-</ul>
 
-<h2>Proposed Rounds</h2>
+<div class="form-actions">
+	<?php $this->widget('bootstrap.widgets.TbButton', array(
+		'buttonType'=>'submit',
+		'type'=>'primary',
+		'label'=>'Create Matches',
+	)); ?>
+</div>
 
-<?php
-$tournamentStructure = new KnockoutTournamentStructure(count($model->registrations));
-$tournamentStructure->displayStructure(true);
+<?php $this->endWidget(); ?>

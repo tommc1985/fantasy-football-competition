@@ -27,7 +27,7 @@ class CompetitionController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','create','update','admin','delete','rounds'),
+				'actions'=>array('index','view','create','update','admin','delete','rounds','ties'),
 				'users'=>array('*'),
 			),/*
 			array('allow',  // allow all users to perform 'index' and 'view' actions
@@ -176,9 +176,42 @@ class CompetitionController extends Controller
 			$i = 0;
 			while ($i < $tournamentStructure->getNumberOfRounds()) {
 				$round = new Round();
-				$round->attributes=$_POST['Round'][$i];
+				if ($_POST['Round'][$i]['id']) {
+					$round = Round::model()->findByPk($_POST['Round'][$i]['id']);
+				}
+
+				$data = $_POST['Round'][$i];
+				$round->attributes=$data;
 				if(!$round->save())
 					$success = false;
+
+				if ($round->replay) {
+					if ($_POST['Round'][$i]['replay_round']['id']) {
+						$replay = Round::model()->findByPk($_POST['Round'][$i]['replay_round']['id']);
+					} else {
+						$replay = new Round();
+					}
+
+					$replayData                   = $_POST['Round'][$i]['replay_round'];
+					$replayData['parent_id']      = $round->id;
+					$replayData['competition_id'] = $id;
+					$replayData['name']           = $round->name . ' Replay';
+					$replayData['legs']           = 1;
+					$replayData['replay']         = 0;
+					$replayData['tie_breaker']    = $round->tie_breaker;
+					$replayData['order']          = 0;
+
+					$replay->attributes=$replayData;
+
+					if(!$replay->save())
+						$success = false;
+				} else {
+					if ($_POST['Round'][$i]['replay_round']['id']) {
+						$replay = Round::model()->findByPk($_POST['Round'][$i]['replay_round']['id']);
+						$replay->delete();
+					}
+				}
+
 				$i++;
 			}
 
@@ -208,6 +241,30 @@ class CompetitionController extends Controller
 			'model'               => $model,
 			'tournamentStructure' => $tournamentStructure,
 			'rounds'			  => $rounds,
+		));
+	}
+
+	/**
+	 * Updates a particular model rounds.
+	 * @param integer $id the ID of the model to be updated
+	 */
+	public function actionTies($id)
+	{
+		$model=$this->loadModel($id);
+
+		$tournamentStructure = new KnockoutTournamentStructure(count($model->registrations));
+
+		if(isset($_POST['club'])) {
+
+
+
+			if (false)
+				$this->redirect(array('rounds','id'=>$model->id));
+		}
+
+		$this->render('ties',array(
+			'model'               => $model,
+			'tournamentStructure' => $tournamentStructure,
 		));
 	}
 

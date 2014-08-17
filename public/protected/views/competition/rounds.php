@@ -10,6 +10,8 @@ $this->menu=array(
 	array('label'=>'Update Competition','url'=>array('update','id'=>$model->id)),
 	array('label'=>'Delete Competition','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Manage Competition','url'=>array('admin')),
+	array('label'=>'Rounds in Competition','url'=>array('rounds','id'=>$model->id)),
+	array('label'=>'Ties in Competition','url'=>array('ties','id'=>$model->id)),
 );
 ?>
 
