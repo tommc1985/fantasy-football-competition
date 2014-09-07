@@ -95,6 +95,27 @@ class ProcessCompetition
      */
     public function processMatch($match)
     {
+        if ($match->status == 'in_progress') {
+            $source = $this->fetchSourceClass($this->competition->source);
+            if ($source) {
+                $source->fetchLatestAndProcess($match->start_datetime, $match->finish_datetime);
 
+                $homeClubData = $source->getClubData($match->homeClub->identifier);
+                $awayClubData = $source->getClubData($match->awayClub->identifier);
+
+                var_Dump($match->homeClub->identifier, $homeClubData, $match->awayClub->identifier, $awayClubData);
+            }
+        }
+    }
+
+    /**
+     * Fetch the Source Class that will be used to fetch points
+     * @param  string $source Source Class Name
+     * @return object         Source Class
+     */
+    public function fetchSourceClass($source)
+    {
+        $sourceClassName = "Source" . ucfirst($source);
+        return new $sourceClassName();
     }
 }
