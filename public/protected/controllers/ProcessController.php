@@ -45,7 +45,9 @@ class ProcessController extends Controller
 		);
 
 		foreach ($competitions  as $competition) {
-			$competition->fetchSourceData();
+			$processCompetition = new ProcessCompetition($competition);
+
+			$processCompetition->process();
 		}
 
 		$this->render('index');

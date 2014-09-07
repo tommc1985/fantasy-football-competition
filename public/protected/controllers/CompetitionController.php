@@ -323,6 +323,37 @@ class CompetitionController extends Controller
 	}
 
 	/**
+	 * Start a particular Competition
+	 * @param integer $id the ID of the model to be updated
+	 */
+	public function actionstart($id)
+	{
+		$model=$this->loadModel($id);
+
+		if ($model->status != 'provisional')
+			throw new CHttpException(400,'The Competition has already started or finished');
+
+		$model->attributes=array(
+			'status' => 'in_progress'
+		);
+
+		$model->save();
+
+		foreach ($model->rounds as $round) {
+			foreach ($round->ties as $tie) {
+				$tie->attributes=array(
+					'status' => 'in_progress'
+				);
+
+				$tie->save();
+			}
+
+			die('Competition Started');
+		}
+
+	}
+
+	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer the ID of the model to be loaded

@@ -3773,3 +3773,43 @@ Stack trace:
 #16 {main}
 REQUEST_URI=/competition/31
 ---
+2014/09/07 18:16:39 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'The Competition has already started or finished' in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php:334
+Stack trace:
+#0 [internal function]: CompetitionController->actionstart('1')
+#1 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(CompetitionController), Array)
+#2 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(CompetitionController), Object(ReflectionMethod), Array)
+#3 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(291): CFilterChain->run()
+#10 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(282): CController->run('start')
+#12 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(141): CWebApplication->runController('competition/sta...')
+#13 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/competition/start/1
+---
+2014/09/07 18:43:11 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'The Competition has already started or finished' in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php:334
+Stack trace:
+#0 [internal function]: CompetitionController->actionstart('1')
+#1 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(CompetitionController), Array)
+#2 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(CompetitionController), Object(ReflectionMethod), Array)
+#3 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#4 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(291): CFilterChain->run()
+#10 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(282): CController->run('start')
+#12 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(141): CWebApplication->runController('competition/sta...')
+#13 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/competition/start/1
+---
