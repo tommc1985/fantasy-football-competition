@@ -285,21 +285,49 @@ class KnockoutTournamentStructure
     public function buildFirstRound($roundNumber, $tieNumber)
     {
         $ties = array();
-        $roundTieCount = pow(2, $roundNumber - 1);
+        $numberOfTies = pow(2, $roundNumber - 1);
+        $numberOfByes = $this->getNumberOfByes();
+        $numberOfMatches = $numberOfTies - $numberOfByes;
+        $byeCount = 0;
+        $matchCount = 0;
 
-        $previousRoundTieNumber = $tieNumber - $roundTieCount;
+        $lastTieType = '';
+        $i = 0;
+        while ($i < $numberOfTies) {
+            $tie = false;
 
-        $outstandingByes = $this->getNumberOfByes();
+            if ($lastTieType == 'match') {
+                if ($byeCount < $numberOfByes) {
+                    $tie = (object) array(
+                        'tie_number' => $tieNumber,
+                        'type'       => 'bye',
+                    );
 
-        $j = 0;
-        while($j < $roundTieCount && $this->currentMatchNumber > 0) {
-            $tie = $this->buildFirstRoundTie($tieNumber, $previousRoundTieNumber, $outstandingByes);
+                    $byeCount++;
+                    $i++;
+                    $tieNumber--;
+                }
 
-            array_unshift($ties, $tie);
+                $lastTieType = 'tie';
+            } else {
+                if ($matchCount < $numberOfMatches) {
+                    $tie = (object) array(
+                        'tie_number'      => $tieNumber,
+                        'match_number'    => $this->currentMatchNumber--,
+                        'type'            => 'match',
+                    );
 
-            $tieNumber--;
+                    $matchCount++;
+                    $i++;
+                    $tieNumber--;
+                }
+                $lastTieType = 'match';
+            }
 
-            $j++;
+            if ($tie) {
+                array_unshift($ties, $tie);
+            }
+
         }
 
         return $ties;

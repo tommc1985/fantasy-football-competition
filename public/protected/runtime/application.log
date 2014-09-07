@@ -3086,3 +3086,209 @@ in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.p
 2014/08/17 17:59:48 [warning] [application] Failed to set unsafe attribute "replay_round" of "Round".
 in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
 in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/06 17:53:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/09/07 10:27:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/09/07 11:15:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php:332
+Stack trace:
+#0 /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php(57): CompetitionController->loadModel('6')
+#1 [internal function]: CompetitionController->actionView('6')
+#2 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(CompetitionController), Array)
+#3 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(CompetitionController), Object(ReflectionMethod), Array)
+#4 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(291): CFilterChain->run()
+#11 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(282): CController->run('view')
+#13 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(141): CWebApplication->runController('competition/vie...')
+#14 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/competition/6
+---
+2014/09/07 11:50:46 [warning] [application] Failed to set unsafe attribute "id" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:50:46 [warning] [application] Failed to set unsafe attribute "replay_round" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:50:46 [warning] [application] Failed to set unsafe attribute "id" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:50:46 [warning] [application] Failed to set unsafe attribute "replay_round" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:50:46 [warning] [application] Failed to set unsafe attribute "id" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (204)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:50:46 [warning] [application] Failed to set unsafe attribute "id" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:50:46 [warning] [application] Failed to set unsafe attribute "replay_round" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:50:46 [warning] [application] Failed to set unsafe attribute "id" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:50:46 [warning] [application] Failed to set unsafe attribute "replay_round" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:52:16 [warning] [application] Failed to set unsafe attribute "id" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:52:16 [warning] [application] Failed to set unsafe attribute "replay_round" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:52:16 [warning] [application] Failed to set unsafe attribute "id" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:52:16 [warning] [application] Failed to set unsafe attribute "replay_round" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:52:16 [warning] [application] Failed to set unsafe attribute "id" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:52:16 [warning] [application] Failed to set unsafe attribute "replay_round" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:52:16 [warning] [application] Failed to set unsafe attribute "id" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:52:16 [warning] [application] Failed to set unsafe attribute "replay_round" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:52:21 [warning] [application] Failed to set unsafe attribute "id" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:52:21 [warning] [application] Failed to set unsafe attribute "replay_round" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:52:21 [warning] [application] Failed to set unsafe attribute "id" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:52:21 [warning] [application] Failed to set unsafe attribute "replay_round" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:52:21 [warning] [application] Failed to set unsafe attribute "id" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:52:21 [warning] [application] Failed to set unsafe attribute "replay_round" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:52:21 [warning] [application] Failed to set unsafe attribute "id" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 11:52:21 [warning] [application] Failed to set unsafe attribute "replay_round" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 12:19:59 [error] [exception.CDbException] exception 'CDbException' with message 'Relation "sources" is not defined in active record class "CompetitionSource".' in /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/db/ar/CActiveFinder.php:226
+Stack trace:
+#0 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/db/ar/CActiveFinder.php(287): CActiveFinder->buildJoinTree(Object(CJoinElement), 'sources')
+#1 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/db/ar/CActiveFinder.php(48): CActiveFinder->buildJoinTree(Object(CJoinElement), 'sources')
+#2 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/db/ar/CActiveRecord.php(909): CActiveFinder->__construct(Object(Competition), 'sources')
+#3 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/db/ar/CActiveRecord.php(280): CActiveRecord->getActiveFinder('sources')
+#4 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/db/ar/CActiveRecord.php(143): CActiveRecord->getRelated('sources')
+#5 /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/models/Competition.php(146): CActiveRecord->__get('sources')
+#6 /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/ProcessController.php(48): Competition->fetchSourceData()
+#7 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/actions/CInlineAction.php(49): ProcessController->actionIndex()
+#8 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#11 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(291): CFilterChain->run()
+#15 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(282): CController->run('')
+#17 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(141): CWebApplication->runController('process')
+#18 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#19 /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/process
+---
+2014/09/07 12:25:45 [error] [exception.CDbException] exception 'CDbException' with message 'Relation "sources" is not defined in active record class "CompetitionSource".' in /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/db/ar/CActiveFinder.php:226
+Stack trace:
+#0 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/db/ar/CActiveFinder.php(287): CActiveFinder->buildJoinTree(Object(CJoinElement), 'sources')
+#1 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/db/ar/CActiveFinder.php(48): CActiveFinder->buildJoinTree(Object(CJoinElement), 'sources')
+#2 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/db/ar/CActiveRecord.php(909): CActiveFinder->__construct(Object(Competition), 'sources')
+#3 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/db/ar/CActiveRecord.php(280): CActiveRecord->getActiveFinder('sources')
+#4 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/db/ar/CActiveRecord.php(143): CActiveRecord->getRelated('sources')
+#5 /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/models/Competition.php(146): CActiveRecord->__get('sources')
+#6 /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/ProcessController.php(49): Competition->fetchSourceData()
+#7 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/actions/CInlineAction.php(49): ProcessController->actionIndex()
+#8 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#11 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(291): CFilterChain->run()
+#15 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(282): CController->run('')
+#17 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(141): CWebApplication->runController('process')
+#18 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#19 /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php(13): CApplication->run()
+#20 {main}
+REQUEST_URI=/process
+---
+2014/09/07 12:59:54 [warning] [application] Failed to set unsafe attribute "id" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 12:59:54 [warning] [application] Failed to set unsafe attribute "replay_round" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 12:59:54 [warning] [application] Failed to set unsafe attribute "id" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 12:59:54 [warning] [application] Failed to set unsafe attribute "replay_round" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 12:59:54 [warning] [application] Failed to set unsafe attribute "id" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (204)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 12:59:54 [warning] [application] Failed to set unsafe attribute "id" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 12:59:54 [warning] [application] Failed to set unsafe attribute "replay_round" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (184)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 12:59:54 [warning] [application] Failed to set unsafe attribute "id" of "Round".
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/CompetitionController.php (204)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 14:01:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "ties".' in /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php:483
+Stack trace:
+#0 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(270): CController->missingAction('ties')
+#1 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(282): CController->run('ties')
+#2 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(141): CWebApplication->runController('competitionRegi...')
+#3 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/competitionRegistration/ties
+---
+2014/09/07 14:01:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "ties".' in /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php:483
+Stack trace:
+#0 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(270): CController->missingAction('ties')
+#1 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(282): CController->run('ties')
+#2 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(141): CWebApplication->runController('competitionRegi...')
+#3 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/competitionRegistration/ties/4
+---
