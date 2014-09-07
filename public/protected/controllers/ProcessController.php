@@ -44,11 +44,13 @@ class ProcessController extends Controller
 		    array('status'=>'in_progress')
 		);
 
+		echo '<pre>';
 		foreach ($competitions  as $competition) {
 			$processCompetition = new ProcessCompetition($competition);
 
 			$processCompetition->process();
 		}
+		die();
 
 		$this->render('index');
 	}

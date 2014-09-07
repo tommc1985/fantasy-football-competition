@@ -3813,3 +3813,62 @@ Stack trace:
 #15 {main}
 REQUEST_URI=/competition/start/1
 ---
+2014/09/07 18:52:36 [error] [php] Undefined variable: competition (/home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/components/ProcessCompetition.php:20)
+Stack trace:
+#0 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(308): CInlineAction->runWithParams()
+#1 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilterChain.php(133): ProcessController->runAction()
+#2 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#4 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CInlineFilter.php(58): ProcessController->filterAccessControl()
+#5 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#6 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(291): CFilterChain->run()
+#7 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(265): ProcessController->runActionWithFilters()
+#8 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(282): ProcessController->run()
+#9 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#10 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php(13): CWebApplication->run()
+REQUEST_URI=/process
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/components/ProcessCompetition.php (20)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/ProcessController.php (50)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php (13)
+2014/09/07 19:08:45 [error] [php] Undefined offset: 0 (/home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/components/ProcessCompetition.php:70)
+Stack trace:
+#0 /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/components/ProcessCompetition.php(24): ProcessCompetition->processRound()
+#1 /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/controllers/ProcessController.php(51): ProcessCompetition->process()
+#2 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/actions/CInlineAction.php(49): ProcessController->actionIndex()
+#3 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(308): CInlineAction->runWithParams()
+#4 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilterChain.php(133): ProcessController->runAction()
+#5 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#6 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#7 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CInlineFilter.php(58): ProcessController->filterAccessControl()
+#8 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#9 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(291): CFilterChain->run()
+#10 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(265): ProcessController->runActionWithFilters()
+#11 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(282): ProcessController->run()
+#12 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(141): CWebApplication->runController()
+#13 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#14 /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php(13): CWebApplication->run()
+REQUEST_URI=/process
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/components/ProcessCompetition.php (70)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/components/ProcessCompetition.php (49)
+in /home/tmcgregor/Sites/Development/fantasy-football-competition/public/protected/components/ProcessCompetition.php (36)
+2014/09/07 19:45:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sdas".' in /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php:483
+Stack trace:
+#0 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(270): CController->missingAction('sdas')
+#1 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(282): CController->run('sdas')
+#2 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(141): CWebApplication->runController('process/sdas')
+#3 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/process/sdas
+---
+2014/09/07 19:45:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "sdas".' in /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php:483
+Stack trace:
+#0 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CController.php(270): CController->missingAction('sdas')
+#1 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(282): CController->run('sdas')
+#2 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/web/CWebApplication.php(141): CWebApplication->runController('process/sdas')
+#3 /home/tmcgregor/Sites/Development/fantasy-football-competition/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /home/tmcgregor/Sites/Development/fantasy-football-competition/public/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/process/sdas
+---
