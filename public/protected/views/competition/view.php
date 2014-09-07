@@ -31,23 +31,30 @@ $this->menu=array(
 	),
 )); ?>
 
-<h2>Registered Teams</h2>
+<?php
+switch ($model->status) {
+	case 'provisional': ?>
+	<h2>Registered Teams</h2>
+	<ul>
+	<?php
+	foreach ($model->registrations as $registration) { ?>
+		<li><?php echo CHtml::encode($registration->club->name); ?> (<?php echo CHtml::encode($registration->club->manager); ?>)</li>
+	<?php
+	} ?>
+	</ul>
 
-<ul>
-<?php
-foreach ($model->registrations as $registration) { ?>
-	<li><?php echo CHtml::encode($registration->club->name); ?> (<?php echo CHtml::encode($registration->club->manager); ?>)</li>
-<?php
+	<h2>Proposed Rounds</h2>
+	<?php
+	$tournamentStructure = new KnockoutTournamentStructure(count($model->registrations));
+	$tournamentStructure->displayStructure(true);
+		break;
+	case 'in_progress': ?>
+	<h2>Rounds</h2>
+		<?php
+		KnockoutTournamentStructure::displayMatches($model);
+		break;
 } ?>
-</ul>
 
-<h2>Proposed Rounds</h2>
-
-<?php
-$tournamentStructure = new KnockoutTournamentStructure(count($model->registrations));
-$tournamentStructure->displayStructure(true);
-
-?>
 <pre>
-<?php var_dump($tournamentStructure); ?>
+<?php //var_dump($tournamentStructure); ?>
 </pre>

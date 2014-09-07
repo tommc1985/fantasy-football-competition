@@ -551,6 +551,65 @@ class KnockoutTournamentStructure
         return $html;
     }
 
+    /**
+     * Display Matches of Tournament
+     * @param  boolean $echo Should the struture be echoed?
+     * @return string
+     */
+    public static function displayMatches($competition, $echo = true)
+    {
+
+        $html = '<table class="table table-striped table-bordered">
+<tbody>';
+        foreach ($competition->rounds as $round) {
+
+            $html .= '<tr>
+    <td colspan="4"><strong>' . CHtml::encode($round->name) . '</strong> (' . $round->start_datetime . ' to ' . $round->finish_datetime . ')</td>
+</tr>';
+            foreach ($round->ties as $tie) {
+                switch ($tie->type) {
+                    case 'match':
+                    $home = CHtml::encode($tie->homeClub ? "{$tie->homeClub->club->name} ({$tie->homeClub->club->manager})" : '');
+                    $away = CHtml::encode($tie->awayClub ? "{$tie->awayClub->club->name} ({$tie->awayClub->club->manager})" : '');
+
+                    if (!$home) {
+                        if ($tie->homeTie->type == 'bye') {
+                            $home = $tie->homeTie->homeClub->club->name;
+                        } else {
+                            $home = "Winner of {$tie->homeTie->name}";
+                        }
+                    }
+
+                    if (!$away) {
+                        if ($tie->awayTie->type == 'bye') {
+                            $away = $tie->awayTie->homeClub->club->name;
+                        } else {
+                            $away = "Winner of {$tie->awayTie->name}";
+                        }
+                    }
+
+
+                $html .= '<tr>
+        <td class="span2">' . CHtml::encode($tie->name) . '</td>
+        <td class="span4">' . $home . '</td>
+        <td class="span2">vs</td>
+        <td class="span4">' . $away . '</td>
+    </tr>';
+                        break;
+                }
+            }
+        }
+
+        $html .= '</tbody>
+</table>';
+
+        if ($echo) {
+            echo $html;
+        }
+
+        return $html;
+    }
+
     public function getStructure()
     {
         return $this->structure;

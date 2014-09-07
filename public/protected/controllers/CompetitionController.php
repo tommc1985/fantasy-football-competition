@@ -257,6 +257,7 @@ class CompetitionController extends Controller
 		if(isset($_POST['club']) && !$model->rounds[0]->ties) {
 			$ties = array();
 			$clubNumber = 0;
+			$byeNumber = 1;
 			foreach ($tournamentStructure->getStructure() as $roundNumber => $roundStructure) {
 				$round = $model->rounds[$roundNumber];
 				foreach ($roundStructure as $match) {
@@ -281,12 +282,13 @@ class CompetitionController extends Controller
 							$tie->attributes=array(
 								'round_id'        => $round->id,
 								'home_club_id'    => $_POST['club'][$clubNumber],
-								'name'            => "Bye",
+								'name'            => "Bye " . $byeNumber,
 								'start_datetime'  => $round->start_datetime,
 								'finish_datetime' => $round->finish_datetime,
 								'type'            => 'bye',
 								'status'          => 'provisional',
 							);
+							$byeNumber++;
 							$clubNumber++;
 
 							$tie->save();
