@@ -2,6 +2,8 @@
 class ProcessCompetition
 {
     public $competition;
+    public $currentDateTime;
+    public $currentProcessedRound;
 
     /**
      * Constructor
@@ -10,6 +12,7 @@ class ProcessCompetition
     public function __construct($competition)
     {
         $this->competition = $competition;
+        $this->currentDateTime = time();
     }
 
     /**
@@ -32,6 +35,8 @@ class ProcessCompetition
      */
     public function processRound($round)
     {
+        $this->currentProcessedRound = $round;
+
         foreach ($round->ties as $tie) {
             $this->processTie($tie);
         }
@@ -103,9 +108,51 @@ class ProcessCompetition
                 $homeClubData = $source->getClubData($match->homeClub->identifier);
                 $awayClubData = $source->getClubData($match->awayClub->identifier);
 
-                var_Dump($match->homeClub->identifier, $homeClubData, $match->awayClub->identifier, $awayClubData);
+                $tieBreakerName = $this->currentProcessedRound->tie_breaker;
+
+                if ($homeClubData && $awayClubData) {
+                    // Set Home Club's Points/Tie Breaker
+                    $match->home_club_points = intval($homeClubData->points);
+
+                    if (isset($homeClubData->$tieBreakerName)) {
+                        $match->home_club_tie_breaker = intval($homeClubData->$tieBreakerName);
+                    }
+
+                    // Set Away Club's Points/Tie Breaker
+                    $match->away_club_points = intval($awayClubData->points);
+
+                    if (isset($awayClubData->$tieBreakerName)) {
+                        $match->away_club_tie_breaker = intval($awayClubData->$tieBreakerName);
+                    }
+
+                    if ($this->isResult($match, $this->currentDateTime)) {
+                        echo 'RESULT';
+
+                        $match->status = 'result';
+                        //$match->save();
+                    }
+
+                    echo 'NO RESULT';
+                }
+
+                var_Dump(/*$match->homeClub->identifier, $homeClubData, $match->awayClub->identifier, $awayClubData, */$match->finish_datetime);
             }
         }
+    }
+
+    /**
+     * Has the match been completed and should be marked as a result?
+     * @param  Tie  $tie            The Tie in question
+     * @param  int  $currentDate    Unix Timestamp of the data to use as "now"
+     * @return boolean              The answer
+     */
+    public function isResult($tie, $currentDate)
+    {
+        $finishDateTimestamp = strtotime($tie->finish_datetime);
+
+        return $finishDateTimestamp < $currentDate
+            && $tie->home_club_points
+            && $tie->away_club_points;
     }
 
     /**
