@@ -42,7 +42,7 @@ class Round extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('competition_id, dates, name, order, date_created, date_modified', 'required'),
+			array('competition_id, dates, name', 'required'),
 			array('parent_id, competition_id, two_legged, number_of_replays, away_goals, order, deleted', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>255),
 			array('tie_breaker', 'length', 'max'=>5),
@@ -126,22 +126,49 @@ class Round extends ActiveRecord
 		));
 	}
 
+	public static function model($className=__CLASS__) {
+        return parent::model($className);
+    }
+
+    /**
+     * Executes after a record has been retrieved from the DB
+     */
+    public function afterFind()
+    {
+    	$dates = unserialize($this->dates);
+    	$this->__set('dates', $dates);
+
+        parent::afterFind();
+    }
+
 	/**
-	 * Returns the static model of the specified AR class.
-	 * Please note that you should have this exact method in all your CActiveRecord descendants!
-	 * @param string $className active record class name.
-	 * @return Round the static model class
+	 * Before Save
+	 * @return boolean
 	 */
-	public static function model($className=__CLASS__)
+	public function beforeSave()
 	{
-		return parent::model($className);
+		$dates = $this->dates;
+
+    	if (!$this->number_of_replays) {
+    		unset($dates['start_datetime']['replay_1']);
+    		unset($dates['end_datetime']['replay_1']);
+    	}
+
+    	if (!$this->two_legged) {
+    		unset($dates['start_datetime']['leg_2']);
+    		unset($dates['end_datetime']['leg_2']);
+    	}
+
+    	$this->__set('dates', serialize($dates));
+
+	    return parent::beforeSave();
 	}
 
 	/**
-	 * Options for Round Replay
-	 * @return array    Competition Sources
+	 * Options for Round Two Legged
+	 * @return array    Two Legged Options
 	 */
-	public static function replayOptions()
+	public static function twoLeggedOptions()
 	{
 		return array(
 			'0' => 'No',
@@ -150,8 +177,20 @@ class Round extends ActiveRecord
 	}
 
 	/**
+	 * Options for Replay
+	 * @return array    Replay Options
+	 */
+	public static function replayOptions()
+	{
+		return array(
+			'0' => 'None',
+			'1' => 'One',
+		);
+	}
+
+	/**
 	 * Options for Round Replay
-	 * @return array    Competition Sources
+	 * @return array    Tie Breaker Options
 	 */
 	public static function tiebreakers()
 	{

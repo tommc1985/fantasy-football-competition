@@ -44,19 +44,19 @@ $this->menu=array(
 			<td><?php echo CHtml::activeLabelEx($model,"name",array('class'=>'span2')); ?></td>
 			<td><?php echo CHtml::activeLabelEx($model,"start_datetime",array('class'=>'span2')); ?></td>
 			<td><?php echo CHtml::activeLabelEx($model,"finish_datetime",array('class'=>'span2')); ?></td>
-			<td><?php echo CHtml::activeLabelEx($model,"legs",array('class'=>'span1')); ?></td>
-			<td><?php echo CHtml::activeLabelEx($model,"replay",array('class'=>'span1')); ?></td>
+			<td><?php echo CHtml::activeLabelEx($model,"two_legged",array('class'=>'span1')); ?></td>
+			<td><?php echo CHtml::activeLabelEx($model,"number_of_replays",array('class'=>'span1')); ?></td>
 			<td><?php echo CHtml::activeLabelEx($model,"tie_breaker",array('class'=>'span1')); ?></td>
 		</tr>
 	</thead>
 	<tbody>
 <?php
-$i = 0;
+$i = 1;
 foreach ($rounds as $round) {
 	$this->renderPartial('../round/_horizontal_form',array(
 		'model'=>$round,
 		'form'=>$form,
-		'row'=>$i,
+		'roundNumber'=>$i,
 	));
 	$i++;
 } ?>

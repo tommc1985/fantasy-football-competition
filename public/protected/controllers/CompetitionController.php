@@ -173,44 +173,18 @@ class CompetitionController extends Controller
 		if(isset($_POST['Round']))
 		{
 			$success = true;
-			$i = 0;
-			while ($i < $tournamentStructure->getNumberOfRounds()) {
+			$i = 1;
+			while ($i <= $tournamentStructure->getNumberOfRounds()) {
 				$round = new Round();
-				if ($_POST['Round'][$i]['id']) {
+				if (isset($_POST['Round'][$i]['id']) && $_POST['Round'][$i]['id']) {
 					$round = Round::model()->findByPk($_POST['Round'][$i]['id']);
 				}
 
 				$data = $_POST['Round'][$i];
 				$round->attributes=$data;
+
 				if(!$round->save())
 					$success = false;
-
-				if ($round->replay) {
-					if ($_POST['Round'][$i]['replay_round']['id']) {
-						$replay = Round::model()->findByPk($_POST['Round'][$i]['replay_round']['id']);
-					} else {
-						$replay = new Round();
-					}
-
-					$replayData                   = $_POST['Round'][$i]['replay_round'];
-					$replayData['parent_id']      = $round->id;
-					$replayData['competition_id'] = $id;
-					$replayData['name']           = $round->name . ' Replay';
-					$replayData['legs']           = 1;
-					$replayData['replay']         = 0;
-					$replayData['tie_breaker']    = $round->tie_breaker;
-					$replayData['order']          = 0;
-
-					$replay->attributes=$replayData;
-
-					if(!$replay->save())
-						$success = false;
-				} else {
-					if ($_POST['Round'][$i]['replay_round']['id']) {
-						$replay = Round::model()->findByPk($_POST['Round'][$i]['replay_round']['id']);
-						$replay->delete();
-					}
-				}
 
 				$i++;
 			}

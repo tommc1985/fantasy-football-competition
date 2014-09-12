@@ -7,42 +7,70 @@ if ($errorSummary) { ?>
 <?php
 } ?>
 <tr>
-	<td><?php echo CHtml::activeHiddenField($model,"[{$row}]id",array('class'=>'span1')); ?><?php echo CHtml::activeHiddenField($model,"[{$row}]parent_id",array('class'=>'span1')); ?><?php echo CHtml::activeHiddenField($model,"[{$row}]competition_id",array('class'=>'span1')); ?><?php echo CHtml::activeHiddenField($model,"[{$row}]order",array('class'=>'span1')); ?><?php echo CHtml::activeTextField($model,"[{$row}]name",array('class'=>'span2','maxlength'=>255)); ?></td>
-	<td><?php echo CHtml::activeDateField($model,"[{$row}]start_datetime",array('class'=>'span2')); ?></td>
-	<td><?php echo CHtml::activeDateField($model,"[{$row}]finish_datetime",array('class'=>'span2')); ?></td>
-	<td><?php echo CHtml::activeNumberField($model,"[{$row}]legs",array('class'=>'span1')); ?></td>
-	<td><?php echo CHtml::activeDropDownList($model,"[{$row}]replay", Round::replayOptions(),array('class'=>'span1','empty'=>'--- Select ---')); ?></td>
-	<td><?php echo CHtml::activeDropDownList($model,"[{$row}]tie_breaker", Round::tiebreakers(),array('class'=>'span1')); ?></td>
+	<td><?php echo CHtml::activeHiddenField($model,"[{$roundNumber}]id",array('class'=>'span1')); ?><?php echo CHtml::activeHiddenField($model,"[{$roundNumber}]parent_id",array('class'=>'span1')); ?><?php echo CHtml::activeHiddenField($model,"[{$roundNumber}]competition_id",array('class'=>'span1')); ?><?php echo CHtml::activeHiddenField($model,"[{$roundNumber}]order",array('class'=>'span1')); ?><?php echo CHtml::activeTextField($model,"[{$roundNumber}]name",array('class'=>'span2','maxlength'=>255)); ?></td>
+	<td>&nbsp;</td>
+	<td>&nbsp;</td>
+	<td><?php echo CHtml::activeDropDownList($model,"[{$roundNumber}]two_legged", Round::twoLeggedOptions(),array('class'=>'span1')); ?></td>
+	<td><?php echo CHtml::activeDropDownList($model,"[{$roundNumber}]number_of_replays", Round::replayOptions(),array('class'=>'span1')); ?></td>
+	<td><?php echo CHtml::activeDropDownList($model,"[{$roundNumber}]tie_breaker", Round::tiebreakers(),array('class'=>'span1')); ?></td>
 </tr>
-<?php
-$replayRound = $model->rounds ? $model->rounds[0] : new Round();
-if ($replayRound) { ?>
-<tr id="replay_<?php echo $row; ?>">
-    <td>Replay Date<?php echo CHtml::activeHiddenField($replayRound,"[{$row}][replay_round]id",array('class'=>'span1')); ?></td>
-    <td><?php echo CHtml::activeDateField($replayRound,"[{$row}][replay_round]start_datetime",array('class'=>'span2')); ?></td>
-    <td><?php echo CHtml::activeDateField($replayRound,"[{$row}][replay_round]finish_datetime",array('class'=>'span2')); ?></td>
+
+<tr id="round_<?php echo $roundNumber; ?>_leg_1">
+    <td><span class="round-<?php echo $roundNumber; ?>-1-match">Match</span><span class="round-<?php echo $roundNumber; ?>-2-matches">1st Leg</span></td>
+    <td><?php echo CHtml::activeDateField($model,"[{$roundNumber}]dates[start_datetime][leg_1]",array('class'=>'span2')); ?></td>
+    <td><?php echo CHtml::activeDateField($model,"[{$roundNumber}]dates[end_datetime][leg_1]",array('class'=>'span2')); ?></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+</tr>
+
+<tr id="round_<?php echo $roundNumber; ?>_leg_2">
+    <td>2nd Leg</td>
+    <td><?php echo CHtml::activeDateField($model,"[{$roundNumber}]dates[start_datetime][leg_2]",array('class'=>'span2')); ?></td>
+    <td><?php echo CHtml::activeDateField($model,"[{$roundNumber}]dates[end_datetime][leg_2]",array('class'=>'span2')); ?></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+</tr>
+
+<tr id="round_<?php echo $roundNumber; ?>_replay_1">
+    <td>Replay</td>
+    <td><?php echo CHtml::activeDateField($model,"[{$roundNumber}]dates[start_datetime][replay_1]",array('class'=>'span2')); ?></td>
+    <td><?php echo CHtml::activeDateField($model,"[{$roundNumber}]dates[end_datetime][replay_1]",array('class'=>'span2')); ?></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
 </tr>
 
 <script type="text/javascript">
-function showHideTie<?php echo $row; ?>()
+function showHideTie<?php echo $roundNumber; ?>()
 {
-    if (jQuery('#Round_<?php echo $row; ?>_replay').val() == 1) {
-        jQuery('#replay_<?php echo $row; ?>').show();
+    // Show/Hide 2nd Leg row
+    if (jQuery('#Round_<?php echo $roundNumber; ?>_two_legged').val() == 1) {
+        jQuery('#round_<?php echo $roundNumber; ?>_leg_2').show();
+
+        jQuery('.round-<?php echo $roundNumber; ?>-1-match').hide();
+        jQuery('.round-<?php echo $roundNumber; ?>-2-matches').show();
     } else {
-        jQuery('#replay_<?php echo $row; ?>').hide();
+        jQuery('#round_<?php echo $roundNumber; ?>_leg_2').hide();
+
+        jQuery('.round-<?php echo $roundNumber; ?>-1-match').show();
+        jQuery('.round-<?php echo $roundNumber; ?>-2-matches').hide();
+    }
+
+    // Show/Hide Replay row
+    if (jQuery('#Round_<?php echo $roundNumber; ?>_number_of_replays').val() == 1) {
+        jQuery('#round_<?php echo $roundNumber; ?>_replay_1').show();
+    } else {
+        jQuery('#round_<?php echo $roundNumber; ?>_replay_1').hide();
     }
 }
 
 jQuery(document).ready(function() {
-    showHideTie<?php echo $row; ?>();
+    showHideTie<?php echo $roundNumber; ?>();
 });
 
-jQuery('#Round_<?php echo $row; ?>_replay').on('change', function() {
-    showHideTie<?php echo $row; ?>();
+jQuery('#Round_<?php echo $roundNumber; ?>_number_of_replays, #Round_<?php echo $roundNumber; ?>_two_legged').on('change', function() {
+    showHideTie<?php echo $roundNumber; ?>();
 });
 </script>
-<?php
-} ?>

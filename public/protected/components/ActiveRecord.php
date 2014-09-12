@@ -43,7 +43,6 @@ class ActiveRecord extends CActiveRecord
      */
     public function beforeSave()
     {
-
         if($this->isNewRecord){
             if(array_key_exists('date_created',$this->attributes)) {
                 $this->date_created = date('Y-m-d H:i:s');
@@ -55,6 +54,10 @@ class ActiveRecord extends CActiveRecord
         }
 
         return parent::beforeSave();
+    }
+
+    public static function model($className=__CLASS__) {
+        return parent::model($className);
     }
 
 }
