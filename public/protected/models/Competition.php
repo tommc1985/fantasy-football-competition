@@ -37,15 +37,15 @@ class Competition extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, slug, type, source', 'required'),
-			array('', 'numerical', 'integerOnly'=>true),
+			array('name, slug, type, source, date_created, date_modified', 'required'),
+			array('deleted', 'numerical', 'integerOnly'=>true),
 			array('name, slug', 'length', 'max'=>255),
 			array('type', 'length', 'max'=>10),
 			array('source', 'length', 'max'=>9),
 			array('status', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, slug, type, source, status, date_created, date_modified', 'safe', 'on'=>'search'),
+			array('id, name, slug, type, source, status, date_created, date_modified, deleted', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -57,9 +57,9 @@ class Competition extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'registrations' => array(self::HAS_MANY, 'CompetitionRegistration', 'competition_id', 'order'=>'club.name ASC', 'with'=>'club'),
-			'sources' => array(self::HAS_MANY, 'CompetitionSource', 'competition_id', 'order'=>'competition_source.order ASC'),
-			'rounds' => array(self::HAS_MANY, 'Round', 'competition_id', 'order'=>'`order` ASC', 'condition'=>'parent_id IS NULL'),
+			'competitionRegistrations' => array(self::HAS_MANY, 'CompetitionRegistration', 'competition_id'),
+			'competitionSources' => array(self::HAS_MANY, 'CompetitionSource', 'competition_id'),
+			'rounds' => array(self::HAS_MANY, 'Round', 'competition_id'),
 		);
 	}
 
@@ -107,10 +107,22 @@ class Competition extends ActiveRecord
 		$criteria->compare('status',$this->status,true);
 		$criteria->compare('date_created',$this->date_created,true);
 		$criteria->compare('date_modified',$this->date_modified,true);
+		$criteria->compare('deleted',$this->deleted);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+	/**
+	 * Returns the static model of the specified AR class.
+	 * Please note that you should have this exact method in all your CActiveRecord descendants!
+	 * @param string $className active record class name.
+	 * @return Competition the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
 	}
 
 	/**
@@ -121,8 +133,8 @@ class Competition extends ActiveRecord
 	{
 		return array(
 			'knockout'   => 'Knockout',
-			'league'     => 'League',
-			'tournament' => 'Tournament'
+			/*'league'     => 'League',
+			'tournament' => 'Tournament'*/
 		);
 	}
 
@@ -162,16 +174,5 @@ class Competition extends ActiveRecord
 			$sourceDataModel->save();
 			unset($sourceDataModel);
 		}
-	}
-
-	/**
-	 * Returns the static model of the specified AR class.
-	 * Please note that you should have this exact method in all your CActiveRecord descendants!
-	 * @param string $className active record class name.
-	 * @return Competition the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
 	}
 }

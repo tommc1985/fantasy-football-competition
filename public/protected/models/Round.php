@@ -7,11 +7,11 @@
  * @property integer $id
  * @property integer $parent_id
  * @property integer $competition_id
+ * @property string $dates
  * @property string $name
- * @property string $start_datetime
- * @property string $finish_datetime
- * @property integer $legs
- * @property integer $replay
+ * @property integer $two_legged
+ * @property integer $number_of_replays
+ * @property integer $away_goals
  * @property string $tie_breaker
  * @property integer $order
  * @property string $date_created
@@ -19,24 +19,13 @@
  * @property integer $deleted
  *
  * The followings are the available model relations:
+ * @property Competition $competition
  * @property Round $parent
  * @property Round[] $rounds
- * @property Competition $competition
  * @property Tie[] $ties
  */
 class Round extends ActiveRecord
 {
-
-    /**
-     * Executes after a record has been retrieved from the DB
-     */
-    public function afterFind()
-    {
-		$this->start_datetime  = substr($this->start_datetime, 0, 10);
-		$this->finish_datetime = substr($this->finish_datetime, 0, 10);
-
-        parent::afterFind();
-    }
 	/**
 	 * @return string the associated database table name
 	 */
@@ -53,13 +42,13 @@ class Round extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('competition_id, name, start_datetime, finish_datetime, tie_breaker, order', 'required'),
-			array('parent_id, competition_id, legs, replay, order', 'numerical', 'integerOnly'=>true),
+			array('competition_id, dates, name, order, date_created, date_modified', 'required'),
+			array('parent_id, competition_id, two_legged, number_of_replays, away_goals, order, deleted', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>255),
 			array('tie_breaker', 'length', 'max'=>5),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, parent_id, competition_id, name, start_datetime, finish_datetime, legs, replay, tie_breaker, order, date_created, date_modified', 'safe', 'on'=>'search'),
+			array('id, parent_id, competition_id, dates, name, two_legged, number_of_replays, away_goals, tie_breaker, order, date_created, date_modified, deleted', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,9 +60,9 @@ class Round extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'competition' => array(self::BELONGS_TO, 'Competition', 'competition_id'),
 			'parent' => array(self::BELONGS_TO, 'Round', 'parent_id'),
 			'rounds' => array(self::HAS_MANY, 'Round', 'parent_id'),
-			'competition' => array(self::BELONGS_TO, 'Competition', 'competition_id'),
 			'ties' => array(self::HAS_MANY, 'Tie', 'round_id'),
 		);
 	}
@@ -87,11 +76,11 @@ class Round extends ActiveRecord
 			'id' => 'ID',
 			'parent_id' => 'Parent',
 			'competition_id' => 'Competition',
+			'dates' => 'Dates',
 			'name' => 'Name',
-			'start_datetime' => 'Start Datetime',
-			'finish_datetime' => 'Finish Datetime',
-			'legs' => 'Legs',
-			'replay' => 'Replay',
+			'two_legged' => 'Two Legged',
+			'number_of_replays' => 'Number Of Replays',
+			'away_goals' => 'Away Goals',
 			'tie_breaker' => 'Tie Breaker',
 			'order' => 'Order',
 			'date_created' => 'Date Created',
@@ -121,15 +110,16 @@ class Round extends ActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('parent_id',$this->parent_id);
 		$criteria->compare('competition_id',$this->competition_id);
+		$criteria->compare('dates',$this->dates,true);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('start_datetime',$this->start_datetime,true);
-		$criteria->compare('finish_datetime',$this->finish_datetime,true);
-		$criteria->compare('legs',$this->legs);
-		$criteria->compare('replay',$this->replay);
+		$criteria->compare('two_legged',$this->two_legged);
+		$criteria->compare('number_of_replays',$this->number_of_replays);
+		$criteria->compare('away_goals',$this->away_goals);
 		$criteria->compare('tie_breaker',$this->tie_breaker,true);
 		$criteria->compare('order',$this->order);
 		$criteria->compare('date_created',$this->date_created,true);
 		$criteria->compare('date_modified',$this->date_modified,true);
+		$criteria->compare('deleted',$this->deleted);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

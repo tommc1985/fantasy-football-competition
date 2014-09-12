@@ -5,16 +5,18 @@
  *
  * The followings are the available columns in table 'competition_registration':
  * @property integer $id
- * @property integer $club_id
  * @property integer $competition_id
+ * @property integer $club_id
  * @property string $identifier
  * @property string $date_created
  * @property string $date_modified
  * @property integer $deleted
  *
  * The followings are the available model relations:
- * @property Competition $competition
  * @property Club $club
+ * @property Competition $competition
+ * @property Match[] $matches
+ * @property Match[] $matches1
  * @property Tie[] $ties
  * @property Tie[] $ties1
  */
@@ -36,12 +38,12 @@ class CompetitionRegistration extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('competition_id, club_id, identifier', 'required'),
-			array('competition_id, club_id', 'numerical', 'integerOnly'=>true),
+			array('competition_id, club_id, identifier, date_created, date_modified', 'required'),
+			array('competition_id, club_id, deleted', 'numerical', 'integerOnly'=>true),
 			array('identifier', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, competition_id, club_id, identifier, date_created, date_modified', 'safe', 'on'=>'search'),
+			array('id, competition_id, club_id, identifier, date_created, date_modified, deleted', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,10 +55,12 @@ class CompetitionRegistration extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'competition' => array(self::BELONGS_TO, 'Competition', 'competition_id'),
 			'club' => array(self::BELONGS_TO, 'Club', 'club_id'),
-			'awayTies' => array(self::HAS_MANY, 'Tie', 'away_club_id'),
-			'homeTies' => array(self::HAS_MANY, 'Tie', 'home_club_id'),
+			'competition' => array(self::BELONGS_TO, 'Competition', 'competition_id'),
+			'matches' => array(self::HAS_MANY, 'Match', 'away_club_id'),
+			'matches1' => array(self::HAS_MANY, 'Match', 'home_club_id'),
+			'ties' => array(self::HAS_MANY, 'Tie', 'away_club_id'),
+			'ties1' => array(self::HAS_MANY, 'Tie', 'home_club_id'),
 		);
 	}
 
@@ -100,6 +104,7 @@ class CompetitionRegistration extends ActiveRecord
 		$criteria->compare('identifier',$this->identifier,true);
 		$criteria->compare('date_created',$this->date_created,true);
 		$criteria->compare('date_modified',$this->date_modified,true);
+		$criteria->compare('deleted',$this->deleted);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
