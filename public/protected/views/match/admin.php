@@ -1,12 +1,12 @@
 <?php
 $this->breadcrumbs=array(
-	'Ties'=>array('index'),
+	'Matches'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List Tie','url'=>array('index')),
-	array('label'=>'Create Tie','url'=>array('create')),
+	array('label'=>'List Match','url'=>array('index')),
+	array('label'=>'Create Match','url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -15,7 +15,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('tie-grid', {
+	$.fn.yiiGridView.update('match-grid', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -23,7 +23,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Ties</h1>
+<h1>Manage Matches</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -38,19 +38,24 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
-	'id'=>'tie-grid',
+	'id'=>'match-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'round_id',
-		'home_tie_id',
-		'away_tie_id',
+		'tie_id',
 		'home_club_id',
 		'away_club_id',
-		/*
 		'name',
-		'type',
+		'home_club_points',
+		/*
+		'away_club_points',
+		'home_club_tie_breaker',
+		'away_club_tie_breaker',
+		'start_datetime',
+		'finish_datetime',
+		'leg_number',
+		'replay',
 		'status',
 		'date_created',
 		'date_modified',
