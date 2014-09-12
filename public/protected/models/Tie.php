@@ -64,14 +64,14 @@ class Tie extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'matches' => array(self::HAS_MANY, 'Match', 'tie_id'),
+			'matches'  => array(self::HAS_MANY, 'Match', 'tie_id'),
 			'awayClub' => array(self::BELONGS_TO, 'CompetitionRegistration', 'away_club_id'),
-			'awayTie' => array(self::BELONGS_TO, 'Tie', 'away_tie_id'),
-			'ties' => array(self::HAS_MANY, 'Tie', 'away_tie_id'),
+			'awayTie'  => array(self::BELONGS_TO, 'Tie', 'away_tie_id'),
+			'awayTies' => array(self::HAS_MANY, 'Tie', 'away_tie_id'),
 			'homeClub' => array(self::BELONGS_TO, 'CompetitionRegistration', 'home_club_id'),
-			'homeTie' => array(self::BELONGS_TO, 'Tie', 'home_tie_id'),
-			'ties1' => array(self::HAS_MANY, 'Tie', 'home_tie_id'),
-			'round' => array(self::BELONGS_TO, 'Round', 'round_id'),
+			'homeTie'  => array(self::BELONGS_TO, 'Tie', 'home_tie_id'),
+			'homeTies' => array(self::HAS_MANY, 'Tie', 'home_tie_id'),
+			'round'    => array(self::BELONGS_TO, 'Round', 'round_id'),
 		);
 	}
 

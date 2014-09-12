@@ -65,7 +65,7 @@ class Match extends ActiveRecord
 		return array(
 			'awayClub' => array(self::BELONGS_TO, 'CompetitionRegistration', 'away_club_id'),
 			'homeClub' => array(self::BELONGS_TO, 'CompetitionRegistration', 'home_club_id'),
-			'tie' => array(self::BELONGS_TO, 'Tie', 'tie_id'),
+			'tie'      => array(self::BELONGS_TO, 'Tie', 'tie_id'),
 		);
 	}
 

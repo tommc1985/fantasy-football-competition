@@ -55,12 +55,12 @@ class CompetitionRegistration extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'club' => array(self::BELONGS_TO, 'Club', 'club_id'),
+			'club'        => array(self::BELONGS_TO, 'Club', 'club_id'),
 			'competition' => array(self::BELONGS_TO, 'Competition', 'competition_id'),
-			'matches' => array(self::HAS_MANY, 'Match', 'away_club_id'),
-			'matches1' => array(self::HAS_MANY, 'Match', 'home_club_id'),
-			'ties' => array(self::HAS_MANY, 'Tie', 'away_club_id'),
-			'ties1' => array(self::HAS_MANY, 'Tie', 'home_club_id'),
+			'awayMatches' => array(self::HAS_MANY, 'Match', 'away_club_id'),
+			'homeMatches' => array(self::HAS_MANY, 'Match', 'home_club_id'),
+			'awayTies'    => array(self::HAS_MANY, 'Tie', 'away_club_id'),
+			'homeTies'    => array(self::HAS_MANY, 'Tie', 'home_club_id'),
 		);
 	}
 

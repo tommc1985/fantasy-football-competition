@@ -57,9 +57,9 @@ class Competition extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'competitionRegistrations' => array(self::HAS_MANY, 'CompetitionRegistration', 'competition_id'),
-			'competitionSources' => array(self::HAS_MANY, 'CompetitionSource', 'competition_id'),
-			'rounds' => array(self::HAS_MANY, 'Round', 'competition_id'),
+			'registrations' => array(self::HAS_MANY, 'CompetitionRegistration', 'competition_id'),
+			'sources'       => array(self::HAS_MANY, 'CompetitionSource', 'competition_id'),
+			'rounds'        => array(self::HAS_MANY, 'Round', 'competition_id'),
 		);
 	}
 

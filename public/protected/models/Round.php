@@ -60,10 +60,10 @@ class Round extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'competition' => array(self::BELONGS_TO, 'Competition', 'competition_id'),
-			'parent' => array(self::BELONGS_TO, 'Round', 'parent_id'),
-			'rounds' => array(self::HAS_MANY, 'Round', 'parent_id'),
-			'ties' => array(self::HAS_MANY, 'Tie', 'round_id'),
+			'competition'   => array(self::BELONGS_TO, 'Competition', 'competition_id'),
+			'previousRound' => array(self::BELONGS_TO, 'Round', 'parent_id'),
+			'rounds'        => array(self::HAS_MANY, 'Round', 'parent_id'),
+			'ties'          => array(self::HAS_MANY, 'Tie', 'round_id'),
 		);
 	}
 
