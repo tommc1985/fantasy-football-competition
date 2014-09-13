@@ -45,7 +45,7 @@ class Tie extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('round_id, date_created, date_modified', 'required'),
+			array('round_id', 'required'),
 			array('round_id, home_tie_id, away_tie_id, home_club_id, away_club_id, deleted', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>255),
 			array('type', 'length', 'max'=>5),

@@ -56,6 +56,11 @@ class ActiveRecord extends CActiveRecord
         return parent::beforeSave();
     }
 
+    /**
+     * Fetch Model
+     * @param  string $className The class name
+     * @return Model             The Model
+     */
     public static function model($className=__CLASS__) {
         return parent::model($className);
     }

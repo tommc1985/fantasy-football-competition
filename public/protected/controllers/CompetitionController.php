@@ -242,10 +242,7 @@ class CompetitionController extends Controller
 								'round_id'        => $round->id,
 								'home_club_id'    => $_POST['club'][$clubNumber],
 								'away_club_id'    => $_POST['club'][$clubNumber + 1],
-								'name'            => "Match {$match->match_number}",
-								'start_datetime'  => $round->start_datetime,
-								'finish_datetime' => $round->finish_datetime,
-								'type'            => 'match',
+								'name'            => "Tie {$match->match_number}",
 								'status'          => 'provisional',
 							);
 							$clubNumber = $clubNumber + 2;
@@ -257,8 +254,6 @@ class CompetitionController extends Controller
 								'round_id'        => $round->id,
 								'home_club_id'    => $_POST['club'][$clubNumber],
 								'name'            => "Bye " . $byeNumber,
-								'start_datetime'  => $round->start_datetime,
-								'finish_datetime' => $round->finish_datetime,
 								'type'            => 'bye',
 								'status'          => 'provisional',
 							);
@@ -272,9 +267,7 @@ class CompetitionController extends Controller
 								'round_id'        => $round->id,
 								'home_tie_id'     => $ties[$match->home_tie_winner]->id,
 								'away_tie_id'     => $ties[$match->away_tie_winner]->id,
-								'name'            => "Match {$match->match_number}",
-								'start_datetime'  => $round->start_datetime,
-								'finish_datetime' => $round->finish_datetime,
+								'name'            => "Tie {$match->match_number}",
 								'type'            => 'match',
 								'status'          => 'provisional',
 							);

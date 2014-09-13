@@ -34,7 +34,7 @@ $this->menu=array(
 <h2>Matches</h2>
 
 <?php
-if (!$model->rounds[0]->ties) { ?>
+if (count($model->rounds)) { ?>
 	<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 		'id'=>'rounds-form',
 		'enableAjaxValidation'=>false,
@@ -56,6 +56,9 @@ if (!$model->rounds[0]->ties) { ?>
 
 	<?php $this->endWidget(); ?>
 <?php
+	if ($model->rounds[0]->ties) {
+		echo '<p>Matches have been generated</p>';
+	}
 } else {
-	echo '<p>Matches have been generated</p>';
+	echo '<p>Please create the rounds first</p>';
 } ?>

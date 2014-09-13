@@ -165,10 +165,22 @@ class Round extends ActiveRecord
 	}
 
 	/**
-	 * Options for Round Two Legged
+	 * Options for Two Legged
 	 * @return array    Two Legged Options
 	 */
 	public static function twoLeggedOptions()
+	{
+		return array(
+			'0' => 'No',
+			'1' => 'Yes',
+		);
+	}
+
+	/**
+	 * Options for Away Goals
+	 * @return array    Away Goals Options
+	 */
+	public static function awayGoalsOptions()
 	{
 		return array(
 			'0' => 'No',

@@ -408,7 +408,7 @@ class KnockoutTournamentStructure
                 switch($tie->type) {
                     case 'match':
             $html .= '<tr>
-    <td class="span2">Match ' . $tie->match_number . '</td>
+    <td class="span2">Tie ' . $tie->match_number . '</td>
     <td class="span4">Team</td>
     <td class="span2">vs</td>
     <td class="span4">Team</td>
@@ -416,7 +416,7 @@ class KnockoutTournamentStructure
                         break;
                     case 'tie':
             $html .= '<tr>
-    <td class="span2">Match ' . $tie->match_number . '</td>
+    <td class="span2">Tie ' . $tie->match_number . '</td>
     <td class="span4">' . $this->displayOpponent($tie->home_tie_winner) . '</td>
     <td class="span2">vs</td>
     <td class="span4">' . $this->displayOpponent($tie->away_tie_winner) . '</td>
@@ -456,7 +456,7 @@ class KnockoutTournamentStructure
 
                             return 'Bye';
                         default:
-                            return "Winner of Match {$tie->match_number}";
+                            return "Winner of Tie {$tie->match_number}";
                     }
                 }
 
@@ -472,7 +472,7 @@ class KnockoutTournamentStructure
     public function getRoundName($roundNumber)
     {
         if ($roundNumber == 0 && $this->getNumberOfByes()) {
-            return sprintf('Round %d', $roundNumber + 1);
+            return sprintf('%s Round', UtilityHelper::numberWithOrdinal($roundNumber + 1));
         }
 
         switch ($this->getNumberOfRounds() - $roundNumber) {
@@ -493,7 +493,7 @@ class KnockoutTournamentStructure
                 break;
         }
 
-        return sprintf('Round %d', $roundNumber + 1);
+        return sprintf('%s Round', UtilityHelper::numberWithOrdinal($roundNumber + 1));
     }
 
     /**
@@ -521,7 +521,7 @@ class KnockoutTournamentStructure
                 switch($tie->type) {
                     case 'match':
             $html .= '<tr>
-    <td class="span2">Match ' . $tie->match_number . '</td>
+    <td class="span2">Tie ' . $tie->match_number . '</td>
     <td class="span4">' . CHtml::dropDownList('club[]', '', $clubs,array('class'=>'span3','empty'=>'--- Select ---')) . '</td>
     <td class="span2">vs</td>
     <td class="span4">' . CHtml::dropDownList('club[]', '', $clubs,array('class'=>'span3','empty'=>'--- Select ---')) . '</td>
@@ -529,7 +529,7 @@ class KnockoutTournamentStructure
                         break;
                     case 'tie':
             $html .= '<tr>
-    <td class="span2">Match ' . $tie->match_number . '</td>
+    <td class="span2">Tie ' . $tie->match_number . '</td>
     <td class="span4">' . $this->displayOpponent($tie->home_tie_winner,'form',$clubs) . '</td>
     <td class="span2">vs</td>
     <td class="span4">' . $this->displayOpponent($tie->away_tie_winner,'form',$clubs) . '</td>

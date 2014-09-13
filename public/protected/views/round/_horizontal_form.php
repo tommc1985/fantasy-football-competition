@@ -12,7 +12,7 @@ if ($errorSummary) { ?>
 	<td>&nbsp;</td>
 	<td><?php echo CHtml::activeDropDownList($model,"[{$roundNumber}]two_legged", Round::twoLeggedOptions(),array('class'=>'span1')); ?></td>
 	<td><?php echo CHtml::activeDropDownList($model,"[{$roundNumber}]number_of_replays", Round::replayOptions(),array('class'=>'span1')); ?></td>
-	<td><?php echo CHtml::activeDropDownList($model,"[{$roundNumber}]tie_breaker", Round::tiebreakers(),array('class'=>'span1')); ?></td>
+    <td><?php echo CHtml::activeDropDownList($model,"[{$roundNumber}]tie_breaker", Round::tiebreakers(),array('class'=>'span1')); ?></td>
 </tr>
 
 <tr id="round_<?php echo $roundNumber; ?>_leg_1">
@@ -30,7 +30,7 @@ if ($errorSummary) { ?>
     <td><?php echo CHtml::activeDateField($model,"[{$roundNumber}]dates[end_datetime][leg_2]",array('class'=>'span2')); ?></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td>&nbsp;</td>
+    <td><?php echo CHtml::activeDropDownList($model,"[{$roundNumber}]away_goals", Round::awayGoalsOptions(),array('class'=>'span1')); ?></td>
 </tr>
 
 <tr id="round_<?php echo $roundNumber; ?>_replay_1">
