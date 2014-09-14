@@ -151,12 +151,12 @@ class Round extends ActiveRecord
 
     	if (!$this->number_of_replays) {
     		unset($dates['start_datetime']['replay_1']);
-    		unset($dates['end_datetime']['replay_1']);
+    		unset($dates['finish_datetime']['replay_1']);
     	}
 
     	if (!$this->two_legged) {
     		unset($dates['start_datetime']['leg_2']);
-    		unset($dates['end_datetime']['leg_2']);
+    		unset($dates['finish_datetime']['leg_2']);
     	}
 
     	$this->__set('dates', serialize($dates));

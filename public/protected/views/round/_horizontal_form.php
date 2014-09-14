@@ -18,7 +18,7 @@ if ($errorSummary) { ?>
 <tr id="round_<?php echo $roundNumber; ?>_leg_1">
     <td><span class="round-<?php echo $roundNumber; ?>-1-match">Match</span><span class="round-<?php echo $roundNumber; ?>-2-matches">1st Leg</span></td>
     <td><?php echo CHtml::activeDateField($model,"[{$roundNumber}]dates[start_datetime][leg_1]",array('class'=>'span2')); ?></td>
-    <td><?php echo CHtml::activeDateField($model,"[{$roundNumber}]dates[end_datetime][leg_1]",array('class'=>'span2')); ?></td>
+    <td><?php echo CHtml::activeDateField($model,"[{$roundNumber}]dates[finish_datetime][leg_1]",array('class'=>'span2')); ?></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -27,7 +27,7 @@ if ($errorSummary) { ?>
 <tr id="round_<?php echo $roundNumber; ?>_leg_2">
     <td>2nd Leg</td>
     <td><?php echo CHtml::activeDateField($model,"[{$roundNumber}]dates[start_datetime][leg_2]",array('class'=>'span2')); ?></td>
-    <td><?php echo CHtml::activeDateField($model,"[{$roundNumber}]dates[end_datetime][leg_2]",array('class'=>'span2')); ?></td>
+    <td><?php echo CHtml::activeDateField($model,"[{$roundNumber}]dates[finish_datetime][leg_2]",array('class'=>'span2')); ?></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td><?php echo CHtml::activeDropDownList($model,"[{$roundNumber}]away_goals", Round::awayGoalsOptions(),array('class'=>'span1')); ?></td>
@@ -36,7 +36,7 @@ if ($errorSummary) { ?>
 <tr id="round_<?php echo $roundNumber; ?>_replay_1">
     <td>Replay</td>
     <td><?php echo CHtml::activeDateField($model,"[{$roundNumber}]dates[start_datetime][replay_1]",array('class'=>'span2')); ?></td>
-    <td><?php echo CHtml::activeDateField($model,"[{$roundNumber}]dates[end_datetime][replay_1]",array('class'=>'span2')); ?></td>
+    <td><?php echo CHtml::activeDateField($model,"[{$roundNumber}]dates[finish_datetime][replay_1]",array('class'=>'span2')); ?></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>

@@ -43,8 +43,7 @@ if (count($model->rounds)) { ?>
 	<?php
 	if (isset($model->rounds[0]) && !$model->rounds[0]->ties) {
 		$tournamentStructure = new KnockoutTournamentStructure(count($model->registrations));
-		$tournamentStructure->displayStructureForm($model->id, true);
-	} ?>
+		$tournamentStructure->displayStructureForm($model->id, true); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
@@ -53,6 +52,9 @@ if (count($model->rounds)) { ?>
 			'label'=>'Create Matches',
 		)); ?>
 	</div>
+
+	<?php
+	} ?>
 
 	<?php $this->endWidget(); ?>
 <?php

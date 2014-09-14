@@ -248,6 +248,8 @@ class CompetitionController extends Controller
 							$clubNumber = $clubNumber + 2;
 
 							$tie->save();
+
+							TournamentBuilder::buildTieMatches($tie);
 							break;
 						case 'bye':
 							$tie->attributes=array(

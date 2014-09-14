@@ -610,6 +610,10 @@ class KnockoutTournamentStructure
         return $html;
     }
 
+    /**
+     * Return structure
+     * @return array   The structure
+     */
     public function getStructure()
     {
         return $this->structure;

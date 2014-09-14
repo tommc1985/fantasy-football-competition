@@ -72,6 +72,7 @@ class Tie extends ActiveRecord
 			'homeTie'  => array(self::BELONGS_TO, 'Tie', 'home_tie_id'),
 			'homeTies' => array(self::HAS_MANY, 'Tie', 'home_tie_id'),
 			'round'    => array(self::BELONGS_TO, 'Round', 'round_id'),
+			'replays'  => array(self::HAS_MANY, 'Match', 'tie_id','condition'=>'replay=1'),
 		);
 	}
 

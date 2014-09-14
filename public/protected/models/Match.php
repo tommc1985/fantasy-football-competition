@@ -8,7 +8,6 @@
  * @property integer $tie_id
  * @property integer $home_club_id
  * @property integer $away_club_id
- * @property string $name
  * @property integer $home_club_points
  * @property integer $away_club_points
  * @property integer $home_club_tie_breaker
@@ -45,13 +44,12 @@ class Match extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('tie_id, start_datetime, finish_datetime, date_created, date_modified', 'required'),
+			array('tie_id, start_datetime, finish_datetime', 'required'),
 			array('tie_id, home_club_id, away_club_id, home_club_points, away_club_points, home_club_tie_breaker, away_club_tie_breaker, leg_number, replay, deleted', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>255),
 			array('status', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, tie_id, home_club_id, away_club_id, name, home_club_points, away_club_points, home_club_tie_breaker, away_club_tie_breaker, start_datetime, finish_datetime, leg_number, replay, status, date_created, date_modified, deleted', 'safe', 'on'=>'search'),
+			array('id, tie_id, home_club_id, away_club_id, home_club_points, away_club_points, home_club_tie_breaker, away_club_tie_breaker, start_datetime, finish_datetime, leg_number, replay, status, date_created, date_modified, deleted', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -79,7 +77,6 @@ class Match extends ActiveRecord
 			'tie_id' => 'Tie',
 			'home_club_id' => 'Home Club',
 			'away_club_id' => 'Away Club',
-			'name' => 'Name',
 			'home_club_points' => 'Home Club Points',
 			'away_club_points' => 'Away Club Points',
 			'home_club_tie_breaker' => 'Home Club Tie Breaker',
@@ -117,7 +114,6 @@ class Match extends ActiveRecord
 		$criteria->compare('tie_id',$this->tie_id);
 		$criteria->compare('home_club_id',$this->home_club_id);
 		$criteria->compare('away_club_id',$this->away_club_id);
-		$criteria->compare('name',$this->name,true);
 		$criteria->compare('home_club_points',$this->home_club_points);
 		$criteria->compare('away_club_points',$this->away_club_points);
 		$criteria->compare('home_club_tie_breaker',$this->home_club_tie_breaker);
