@@ -54,7 +54,9 @@ class ProcessCompetition
                     $this->processBye($tie);
                     break;
                 case 'match':
-                    $this->processMatch($tie);
+                    foreach ($tie->matches as $match) {
+                        $this->processMatch($match);
+                    }
                     break;
             }
         }
@@ -129,7 +131,7 @@ class ProcessCompetition
                         echo 'RESULT';
 
                         $match->status = 'result';
-                        //$match->save();
+                        $match->save();
                     }
 
                     echo 'NO RESULT';
