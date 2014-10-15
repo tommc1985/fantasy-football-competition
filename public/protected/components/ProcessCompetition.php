@@ -55,10 +55,12 @@ class ProcessCompetition
                     break;
                 case 'match':
                     foreach ($tie->matches as $match) {
-                        $this->processMatch($match);
+                        $match = $this->processMatch($match);
                     }
                     break;
             }
+
+
         }
     }
 
@@ -94,6 +96,8 @@ class ProcessCompetition
 
         $bye->status = 'result';
         $bye->save();
+
+        return $bye;
     }
 
     /**
@@ -127,19 +131,17 @@ class ProcessCompetition
                         $match->away_club_tie_breaker = intval($awayClubData->$tieBreakerName);
                     }
 
+                    // Is the match now a "result" rathe than "in progress"
                     if ($this->isResult($match, $this->currentDateTime)) {
-                        echo 'RESULT';
-
                         $match->status = 'result';
-                        $match->save();
                     }
 
-                    echo 'NO RESULT';
+                    $match->save();
                 }
-
-                var_Dump(/*$match->homeClub->identifier, $homeClubData, $match->awayClub->identifier, $awayClubData, */$match->finish_datetime);
             }
         }
+
+        return $match;
     }
 
     /**

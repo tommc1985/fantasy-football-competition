@@ -4134,3 +4134,11 @@ Stack trace:
 #19 {main}
 REQUEST_URI=/process
 ---
+2014/10/15 12:48:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in /Users/thomasmcgregor/Sites/OWN PROJECTS/fantasy-football-competition/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/thomasmcgregor/Sites/OWN PROJECTS/fantasy-football-competition/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 /Users/thomasmcgregor/Sites/OWN PROJECTS/fantasy-football-competition/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Users/thomasmcgregor/Sites/OWN PROJECTS/fantasy-football-competition/public/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
